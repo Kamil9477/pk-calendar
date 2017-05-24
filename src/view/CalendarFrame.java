@@ -14,21 +14,30 @@ import java.awt.Font;
 
 import javax.swing.SwingConstants;
 
+import controller.DateController;
+import model.DateModel;
+
 import java.awt.GridLayout;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CalendarFrame extends JFrame {
-
+	
+	private DateModel model;
 	private JPanel contentPane;
 	private JButton prYear;
 	private JButton prMonth;
-	private JLabel dateLabel;
 	private JButton nextMonth;
 	private JButton nextYear;
 	private JLabel[] dayNames;
 	private JTextField[] days;
+	private JLabel monthLabel;
+	private JLabel yearLabel;
+	private JLabel slashLabel;
 
-	public CalendarFrame() {
+	public CalendarFrame(DateModel model) {
+		this.model = model;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 652, 600);
@@ -42,13 +51,15 @@ public class CalendarFrame extends JFrame {
 		contentPane.add(getPrMonth());
 		contentPane.add(getNextYear());
 		contentPane.add(getNextMonth());
-		contentPane.add(getDateLabel());
+		contentPane.add(getYearLabel());
 		
 		//kontener na dni miesi¹ca
 		JPanel panel = new JPanel();
 		panel.setBounds(15, 90, 615, 393);
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(7, 7, 0, 0));
+		contentPane.add(getSlashLabel());
+		contentPane.add(getMonthLabel());
 		
 		for(int i=0; i<getDayNames().length; i++) {
 			panel.add(dayNames[i]);
@@ -59,18 +70,27 @@ public class CalendarFrame extends JFrame {
 		}	
 	}
 	
+	public void updateView() {
+		monthLabel.setText(Integer.toString(model.getMonth()));
+		yearLabel.setText(Integer.toString(model.getYear()));
+	}
+	
 //metody ustawiaj¹ce wygl¹d komponentów
 //---------------------------------------------------------------------------------
-	private JButton getPrYear() {
+	public JButton getPrYear() {
 		if(prYear == null) {
 			prYear = new JButton("<<");
+			prYear.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+				}
+			});
 			prYear.setFont(new Font("Tahoma", Font.PLAIN, 24));
 			prYear.setBounds(15, 16, 83, 58);
 		}
 		return prYear;
 	}
 	
-	private JButton getPrMonth() {
+	public JButton getPrMonth() {
 		if(prMonth == null) {
 			prMonth = new JButton("<");
 			prMonth.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -79,7 +99,7 @@ public class CalendarFrame extends JFrame {
 		return prMonth;
 	}
 	
-	private JButton getNextYear() {
+	public JButton getNextYear() {
 		if(nextYear == null) {
 			nextYear = new JButton(">>");
 			nextYear.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -88,23 +108,13 @@ public class CalendarFrame extends JFrame {
 		return nextYear;
 	}
 	
-	private JButton getNextMonth() {
+	public JButton getNextMonth() {
 		if(nextMonth == null) {
 			nextMonth = new JButton(">");
 			nextMonth.setFont(new Font("Tahoma", Font.PLAIN, 24));
 			nextMonth.setBounds(436, 16, 83, 58);
 		}
 		return nextMonth;
-	}
-	
-	private JLabel getDateLabel() {
-		if(dateLabel == null) {
-			dateLabel = new JLabel("5/2017");
-			dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			dateLabel.setFont(new Font("Tahoma", Font.BOLD, 33));
-			dateLabel.setBounds(240, 16, 180, 58);
-		}
-		return dateLabel;
 	}
 	
 	private JLabel[] getDayNames() {
@@ -132,5 +142,34 @@ public class CalendarFrame extends JFrame {
 			}
 		}
 		return days;
+	}
+	
+	private JLabel getMonthLabel() {
+		if(monthLabel == null) {
+			monthLabel = new JLabel(Integer.toString(model.getMonth()));
+			monthLabel.setBounds(241, 16, 58, 58);
+			monthLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			monthLabel.setFont(new Font("Tahoma", Font.BOLD, 28));
+		}
+		return monthLabel;
+	}
+	
+	private JLabel getYearLabel() {
+		if (yearLabel == null) {
+			yearLabel = new JLabel(Integer.toString(model.getYear()));
+			yearLabel.setFont(new Font("Tahoma", Font.BOLD, 28));
+			yearLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			yearLabel.setBounds(298, 16, 108, 58);
+		}
+		return yearLabel;
+	}
+	private JLabel getSlashLabel() {
+		if (slashLabel == null) {
+			slashLabel = new JLabel("/");
+			slashLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			slashLabel.setFont(new Font("Tahoma", Font.BOLD, 26));
+			slashLabel.setBounds(291, 16, 20, 58);
+		}
+		return slashLabel;
 	}
 }
