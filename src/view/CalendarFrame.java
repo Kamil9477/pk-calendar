@@ -3,10 +3,13 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -46,33 +49,57 @@ public class CalendarFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		//dodajemy przyciski przewijaj¹ce date
+		//dodajemy przyciski przewijaj¹ce date i etykiety j¹ wyœwietlaj¹ce
 		contentPane.add(getPrYear());
 		contentPane.add(getPrMonth());
 		contentPane.add(getNextYear());
 		contentPane.add(getNextMonth());
 		contentPane.add(getYearLabel());
+		contentPane.add(getSlashLabel());
+		contentPane.add(getMonthLabel());
 		
 		//kontener na dni miesi¹ca
 		JPanel panel = new JPanel();
 		panel.setBounds(15, 90, 615, 393);
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(7, 7, 0, 0));
-		contentPane.add(getSlashLabel());
-		contentPane.add(getMonthLabel());
 		
+		//dodajemy do panelu nazwy dni tygodnia
 		for(int i=0; i<getDayNames().length; i++) {
 			panel.add(dayNames[i]);
 		}
 		
+		//i pola kalendarza
 		for(int i=0; i<getDays().length; i++) {
 			panel.add(days[i]);
-		}	
+		}
+		
+		//¿eby po uruchomieniu by³a wyœwietlona plansza
+		updateView();
 	}
 	
 	public void updateView() {
+		//czyœcimy planszê kalendarza
+		for(int i=0; i<days.length; i++) {
+			days[i].setText("");
+		}
+		
+		//aktualizujemy tekst na górze
 		monthLabel.setText(Integer.toString(model.getMonth()));
 		yearLabel.setText(Integer.toString(model.getYear()));
+		
+		//i planszê kalendarza
+		for(int i=1, j=model.getFirstDay(); i<model.getMonthDays()+1; i++, j++) {
+			days[j].setText(Integer.toString(i));
+		}
+	
+		for(int i=0; i<days.length; i++) {
+			if(!days[i].getText().equals("")) {
+				days[i].setBorder(new LineBorder(Color.black, 1, false));
+			} else {
+				days[i].setBorder(new LineBorder(Color.black, 0, false));
+			}
+		}
 	}
 	
 //metody ustawiaj¹ce wygl¹d komponentów
@@ -80,10 +107,6 @@ public class CalendarFrame extends JFrame {
 	public JButton getPrYear() {
 		if(prYear == null) {
 			prYear = new JButton("<<");
-			prYear.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-				}
-			});
 			prYear.setFont(new Font("Tahoma", Font.PLAIN, 24));
 			prYear.setBounds(15, 16, 83, 58);
 		}
@@ -138,6 +161,7 @@ public class CalendarFrame extends JFrame {
 			for(int i=0; i<days.length; i++) {
 				days[i] = new JTextField();
 				days[i].setHorizontalAlignment(SwingConstants.CENTER);
+				days[i].setFont(new Font("Tahoma", Font.PLAIN, 18));
 				days[i].setEditable(false);
 			}
 		}
