@@ -1,29 +1,11 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.border.Border;
+import java.awt.*;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 
-import java.awt.Font;
-
-import javax.swing.SwingConstants;
-
-import controller.DateController;
 import model.DateModel;
-
-import java.awt.GridLayout;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class CalendarFrame extends JFrame {
 	
@@ -38,8 +20,10 @@ public class CalendarFrame extends JFrame {
 	private JLabel monthLabel;
 	private JLabel yearLabel;
 	private JLabel slashLabel;
+	private JButton addEvent;
 
 	public CalendarFrame(DateModel model) {
+		setTitle("Kalendarz");
 		this.model = model;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,13 +41,15 @@ public class CalendarFrame extends JFrame {
 		contentPane.add(getYearLabel());
 		contentPane.add(getSlashLabel());
 		contentPane.add(getMonthLabel());
+		//dolne przyciski
+		contentPane.add(getAddEvent());
 		
 		//kontener na dni miesi¹ca
 		JPanel panel = new JPanel();
 		panel.setBounds(15, 90, 615, 393);
 		contentPane.add(panel);
-		panel.setLayout(new GridLayout(7, 7, 0, 0));
-		
+		panel.setLayout(new GridLayout(7, 7, 3, 3));
+				
 		//dodajemy do panelu nazwy dni tygodnia
 		for(int i=0; i<getDayNames().length; i++) {
 			panel.add(dayNames[i]);
@@ -195,5 +181,14 @@ public class CalendarFrame extends JFrame {
 			slashLabel.setBounds(291, 16, 20, 58);
 		}
 		return slashLabel;
+	}
+	
+	public JButton getAddEvent() {
+		if (addEvent == null) {
+			addEvent = new JButton("Dodaj wydarzenie");
+			addEvent.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			addEvent.setBounds(458, 499, 171, 45);
+		}
+		return addEvent;
 	}
 }
