@@ -1,30 +1,36 @@
 package view;
 
 import java.awt.*;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import model.DateModel;
+import model.EventManager;
+import model.Event;
 
 public class CalendarFrame extends JFrame {
 	
-	private DateModel model;
+	private DateModel dateModel;
+	private EventManager eventManager;
+	
 	private JPanel contentPane;
 	private JButton prYear;
 	private JButton prMonth;
 	private JButton nextMonth;
 	private JButton nextYear;
 	private JLabel[] dayNames;
-	private JTextField[] days;
+	private JButton[] days;
 	private JLabel monthLabel;
 	private JLabel yearLabel;
 	private JLabel slashLabel;
 	private JButton addEvent;
 
-	public CalendarFrame(DateModel model) {
+	public CalendarFrame(DateModel dateModel, EventManager eventManager) {
+		this.dateModel = dateModel;
+		this.eventManager = eventManager;
 		setTitle("Kalendarz");
-		this.model = model;
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 652, 600);
@@ -68,22 +74,37 @@ public class CalendarFrame extends JFrame {
 		//czyœcimy planszê kalendarza
 		for(int i=0; i<days.length; i++) {
 			days[i].setText("");
+			days[i].setEnabled(true);
 		}
 		
 		//aktualizujemy tekst na górze
-		monthLabel.setText(Integer.toString(model.getMonth()));
-		yearLabel.setText(Integer.toString(model.getYear()));
+		monthLabel.setText(Integer.toString(dateModel.getMonth()));
+		yearLabel.setText(Integer.toString(dateModel.getYear()));
 		
-		//i planszê kalendarza
-		for(int i=1, j=model.getFirstDay(); i<model.getMonthDays()+1; i++, j++) {
+		//aktualizujemy planszê kalendarza
+		for(int i=1, j=dateModel.getFirstDay(); i<dateModel.getMonthDays()+1; i++, j++) {
 			days[j].setText(Integer.toString(i));
 		}
-	
+		
+		//ustawiamy obramowanie
 		for(int i=0; i<days.length; i++) {
 			if(!days[i].getText().equals("")) {
 				days[i].setBorder(new LineBorder(Color.black, 1, false));
 			} else {
 				days[i].setBorder(new LineBorder(Color.black, 0, false));
+				days[i].setEnabled(false);
+			}
+		}
+		
+		//sprawdzamy czy w tym miesi¹cu odbywaj¹ siê jakieœ wydarzenia
+		//jeœli tak to zmieniamy wygl¹d odpowiednich dni
+		for(int i=0; i<days.length; i++) {
+			for(Event item : eventManager.getEvents(dateModel.getMonth(), dateModel.getYear())) {
+				System.out.println("XXXXXXXX");
+				if (days[i].getText().equals(Integer.toString(item.getDay()))) {
+					days[i].setBackground(new Color(255, 162, 128));
+					break;
+				}
 			}
 		}
 	}
@@ -141,14 +162,13 @@ public class CalendarFrame extends JFrame {
 		return dayNames;
 	}
 	
-	private JTextField[] getDays() {
+	public JButton[] getDays() {
 		if(days == null) {
-			days = new JTextField[42];
+			days = new JButton[42];
 			for(int i=0; i<days.length; i++) {
-				days[i] = new JTextField();
+				days[i] = new JButton();
 				days[i].setHorizontalAlignment(SwingConstants.CENTER);
 				days[i].setFont(new Font("Tahoma", Font.PLAIN, 18));
-				days[i].setEditable(false);
 			}
 		}
 		return days;
@@ -156,7 +176,7 @@ public class CalendarFrame extends JFrame {
 	
 	private JLabel getMonthLabel() {
 		if(monthLabel == null) {
-			monthLabel = new JLabel(Integer.toString(model.getMonth()));
+			monthLabel = new JLabel(Integer.toString(dateModel.getMonth()));
 			monthLabel.setBounds(241, 16, 58, 58);
 			monthLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			monthLabel.setFont(new Font("Tahoma", Font.BOLD, 28));
@@ -166,7 +186,7 @@ public class CalendarFrame extends JFrame {
 	
 	private JLabel getYearLabel() {
 		if (yearLabel == null) {
-			yearLabel = new JLabel(Integer.toString(model.getYear()));
+			yearLabel = new JLabel(Integer.toString(dateModel.getYear()));
 			yearLabel.setFont(new Font("Tahoma", Font.BOLD, 28));
 			yearLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			yearLabel.setBounds(298, 16, 108, 58);
