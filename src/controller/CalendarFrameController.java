@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.swing.JButton;
 
 import view.CalendarFrame;
+import view.EventInfo;
 import view.NewEventFrame;
 import model.DateModel;
 import model.Event;
@@ -113,7 +114,7 @@ public class CalendarFrameController {
 	public void printEvents(int day) {
 		Event ev = eventManager.getEvent(day, dateModel.getMonth(), dateModel.getYear());
 		if(ev != null) {
-			System.out.println(ev.toString());
+			new EventInfo(ev.toString()).setVisible(true);
 		} else {
 			System.out.println("Nie ma wydarzenia!");
 		}
