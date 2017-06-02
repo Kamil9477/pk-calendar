@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.Optional;
 
 import javax.swing.JButton;
@@ -109,14 +110,21 @@ public class CalendarFrameController {
 	}
 	
 	/**
-	 * Wypisuje informacje o wydarzeniach w danym dniu, roku i miesiacu
+	 * Wypisuje informacje o wydarzeniach w danym dniu
+	 * tworzy nowego JDialoga z informacjami
 	 */
 	public void printEvents(int day) {
-		Event ev = eventManager.getEvent(day, dateModel.getMonth(), dateModel.getYear());
-		if(ev != null) {
-			new EventInfo(ev.toString()).setVisible(true);
+		List<Event> events = eventManager.getEvent(day, dateModel.getMonth(), dateModel.getYear());
+		
+		if(events.size() > 0) {
+			String data = "";
+			for(Event item : events) {
+				data += item.toString();
+				data += "\n------------------------------------\n";
+			}
+			new EventInfo(data).setVisible(true);
 		} else {
-			System.out.println("Nie ma wydarzenia!");
+			new EventInfo("W tym dniu nie ma ¿adnych wydarzeñ!").setVisible(true);
 		}
 	}
 }

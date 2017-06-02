@@ -20,12 +20,9 @@ public class Event {
 	 * @return data informacje o wydarzeniu
 	 */
 	public String toString() {
-		String data = "------------------------\n" +
-				      "Czas: " + date + " " + hour + "\n" +
-				      "------------------------\n" +
+		String data = "Godzina: " + hour + "\n" +
 				      "Miejsce: " + place + "\n" +
-				      "------------------------\n" +
-				      "Opis: \n" + description;
+				      description;
 		return data;
 	}
 	/**
