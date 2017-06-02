@@ -5,18 +5,28 @@ import java.util.List;
 import java.util.Optional;
 
 public class EventManager {
+	/**
+	 * lista wydarzeñ
+	 */
 	private List<Event> eventList;
 	
+	/**
+	 * klasa odpowiedzialna za komunikomanie siê z baz¹ danych
+	 */
+	private DBManager dbManager;
+	
 	public EventManager() {
-		eventList = new ArrayList<Event>();
+		dbManager = new DBManager();
+		eventList = dbManager.getEventsFromDB();
 	}
 	
 	/**
 	 * Dodaje wydarzenie do listy
 	 * @param event nowe wydarzenie
 	 */
-	public void addEvent(Event event) {
-		eventList.add(event);
+	public void addEvent(Event ev) {
+		eventList.add(ev);
+		dbManager.addEventToDB(ev);
 	}
 	
 	/**

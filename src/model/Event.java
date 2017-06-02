@@ -55,5 +55,36 @@ public class Event {
 		return Integer.parseInt(tab[2]);
 	}
 	
+	/**
+	 * zwraca date wydarzenia
+	 * @return data
+	 */
+	public String getDate() {
+		return date;
+	}
+	
+	/**
+	 * zwraca godzine wydarzenia
+	 * @return godzina
+	 */
+	public String getHour() {
+		return hour;
+	}
+	
+	/**
+	 * zwraca miejsce wydarzenia
+	 * @return miejsce
+	 */
+	public String getPlace() {
+		return place;
+	}
+	
+	/**
+	 * zwraca opis wydarzenia
+	 * @return opis
+	 */
+	public String getDesc() {
+		return description;
+	}
 	
 }

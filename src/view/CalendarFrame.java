@@ -75,6 +75,7 @@ public class CalendarFrame extends JFrame {
 		for(int i=0; i<days.length; i++) {
 			days[i].setText("");
 			days[i].setEnabled(true);
+			days[i].setBackground(null);
 		}
 		
 		//aktualizujemy tekst na górze
@@ -100,7 +101,6 @@ public class CalendarFrame extends JFrame {
 		//jeœli tak to zmieniamy wygl¹d odpowiednich dni
 		for(int i=0; i<days.length; i++) {
 			for(Event item : eventManager.getEvents(dateModel.getMonth(), dateModel.getYear())) {
-				System.out.println("XXXXXXXX");
 				if (days[i].getText().equals(Integer.toString(item.getDay()))) {
 					days[i].setBackground(new Color(255, 162, 128));
 					break;
