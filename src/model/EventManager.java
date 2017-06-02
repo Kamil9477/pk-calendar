@@ -11,10 +11,13 @@ public class EventManager {
 	private List<Event> eventList;
 	
 	/**
-	 * klasa odpowiedzialna za komunikomanie siê z baz¹ danych
+	 * obiekt odpowiedzialny za komunikomanie siê z baz¹ danych
 	 */
 	private DBManager dbManager;
 	
+	/**
+	 * w konstruktorze ³¹dujemy do listy wszystkie wydarzenia z bazy danych
+	 */
 	public EventManager() {
 		dbManager = new DBManager();
 		eventList = dbManager.getEventsFromDB();

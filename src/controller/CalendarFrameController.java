@@ -120,11 +120,12 @@ public class CalendarFrameController {
 			String data = "";
 			for(Event item : events) {
 				data += item.toString();
-				data += "\n------------------------------------\n";
+				data += "\n----------------------------------\n";
 			}
-			new EventInfo(data).setVisible(true);
+			new EventInfo(data, day, dateModel.getMonth(), dateModel.getYear()).setVisible(true);
 		} else {
-			new EventInfo("W tym dniu nie ma ¿adnych wydarzeñ!").setVisible(true);
+			new EventInfo("W tym dniu nie ma ¿adnych wydarzeñ!", 
+					day, dateModel.getMonth(), dateModel.getYear()).setVisible(true);
 		}
 	}
 }

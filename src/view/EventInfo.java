@@ -15,24 +15,30 @@ import javax.swing.JTextArea;
 import java.awt.Font;
 
 public class EventInfo extends JDialog {
-	public EventInfo(String data) {
-		setBounds(100, 100, 450, 300);
-		setTitle("Wydarzenia z dnia..");
+	public EventInfo(String data, int day, int month, int year) {
+		setResizable(false);
+		setBounds(100, 100, 440, 300);
+		setTitle("Informacje o wydarzeniach");
 		getContentPane().setLayout(null);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(15, 50, 398, 188);
+		getContentPane().add(scrollPane);
+		
 		JTextArea textArea = new JTextArea(data);
+		scrollPane.setViewportView(textArea);
 		
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		textArea.setBounds(15, 16, 398, 212);
 		textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.setOpaque(false);
         textArea.setEditable(false);
-        
-        JScrollPane jScrollPane = new JScrollPane(textArea,
-                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        
-		getContentPane().add(textArea);
+		
+		JLabel dateLabel = new JLabel();
+		dateLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
+		dateLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		dateLabel.setBounds(126, 10, 170, 26);
+		dateLabel.setText(Integer.toString(day) + "/" + Integer.toString(month) + "/" + Integer.toString(year));
+		getContentPane().add(dateLabel);
 	}
 }
