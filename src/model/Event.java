@@ -1,6 +1,11 @@
 package model;
 
-public class Event {
+/**
+ * klasa reprezentuj¹ca pojedyñcze wydarzenie
+ * @author Kamil
+ *
+ */
+public class Event implements Comparable<Event>{
 	private String date;
 	private String hour;
 	private String place;
@@ -59,8 +64,8 @@ public class Event {
 	}
 	
 	/**
-	 * zwraca godzine wydarzenia
-	 * @return godzina
+	 * zwraca czas wydarzenia
+	 * @return czas
 	 */
 	public String getHour() {
 		return hour;
@@ -80,6 +85,46 @@ public class Event {
 	 */
 	public String getDesc() {
 		return description;
+	}
+	
+	/**
+	 * zwraca godzine wydarzenie w int
+	 * @return godzina
+	 */
+	public int getHourInt() {
+		String[] tab = hour.split(":");
+		return Integer.parseInt(tab[0]);
+	}
+	
+	/**
+	 * metoda potrzebna to sortowania po dacie
+	 * musia³em samemu zaimplementowaæ 
+	 * bo compareTo nie wspiera typów prymitywnych
+	 */
+	public int compareTo(Event ev) {
+		if (getYear() < ev.getYear()) {
+			return -1;
+		} else if (getYear() > ev.getYear()) {
+			return 1;
+		} else {
+			if(getMonth() < ev.getMonth()) {
+				return -1;
+			} else if(getMonth() > ev.getMonth()) {
+				return 1;
+			} else {
+				if(getDay() < ev.getDay()) {
+					return -1;
+				} else if (getDay() > ev.getDay()) {
+					return 1;
+				} else {
+					if(getHourInt() < ev.getHourInt()) {
+						return -1;
+					} else {
+						return 1;
+					}
+				}
+			}
+		}
 	}
 	
 }

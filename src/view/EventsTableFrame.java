@@ -93,7 +93,7 @@ public class EventsTableFrame extends JFrame {
 			table = new JTable();
 			table.setModel(evTableModel);
 			table.getColumnModel().getColumn(2).setPreferredWidth(300);
-			table.getColumnModel().getColumn(3).setPreferredWidth(700);
+			table.getColumnModel().getColumn(3).setPreferredWidth(600);
 			table.getTableHeader().setResizingAllowed(false);
 			table.getTableHeader().setReorderingAllowed(false);
 		}

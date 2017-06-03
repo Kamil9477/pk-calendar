@@ -7,7 +7,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * klasa odpowiedzialna za komunikacjê z baz¹ danych
+ * przy ka¿dym odczycie/zapisie tworzymy nowe po³¹czenie i je zamykamy
+ * @author Kamil
+ *
+ */
 public class DBManager {
 	
 	/**
@@ -119,6 +124,12 @@ public class DBManager {
         }
 	}
 	
+	/**
+	 * metoda zwraca liste wydarzeñ które pasuj¹ do podanych w parametrze filtrów
+	 * @param fields
+	 * @param filters
+	 * @return lista wydarzeñ
+	 */
 	public List<Event> getFilteredEvents(List<String> fields, List<String> filters) {
 		List<Event> events = new ArrayList<Event>();
 		String query = "SELECT * FROM events WHERE";

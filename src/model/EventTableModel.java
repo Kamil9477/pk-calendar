@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
@@ -24,17 +25,26 @@ public class EventTableModel extends AbstractTableModel {
 	 * metoda wyœwietla w tabeli wydarzenia znajduj¹ce siê w bazie danych
 	 */
 	public void setDataFromDB() {
-		data = new Object[dbMan.getEventsFromDB().size()][4];
-		for(int i=0; i<dbMan.getEventsFromDB().size(); i++) {
-			data[i][0] = dbMan.getEventsFromDB().get(i).getDate();
-			data[i][1] = dbMan.getEventsFromDB().get(i).getHour();
-			data[i][2] = dbMan.getEventsFromDB().get(i).getPlace();
-			data[i][3] = dbMan.getEventsFromDB().get(i).getDesc();
+		List <Event> events = dbMan.getEventsFromDB();
+		Collections.sort(events);
+		
+		data = new Object[events.size()][4];
+		for(int i=0; i<events.size(); i++) {
+			data[i][0] = events.get(i).getDate();
+			data[i][1] = events.get(i).getHour();
+			data[i][2] = events.get(i).getPlace();
+			data[i][3] = events.get(i).getDesc();
 		}
 	}
 	
+	/**
+	 * metoda wyœwietla w tabeli wydarzenia o podanych filtrach
+	 * @param fields
+	 * @param filters
+	 */
 	public void setFilter(List<String> fields, List<String> filters) {
 		List<Event> filtered = dbMan.getFilteredEvents(fields, filters);
+		Collections.sort(filtered);
 		data = new Object[filtered.size()][4];
 		for(int i=0; i<filtered.size(); i++) {
 			data[i][0] = filtered.get(i).getDate();
