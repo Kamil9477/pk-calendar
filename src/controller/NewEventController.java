@@ -2,6 +2,10 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import javax.swing.JOptionPane;
 
 import view.CalendarFrame;
 import view.EventsTableFrame;
@@ -31,18 +35,45 @@ public class NewEventController {
 	}
 	
 	/**
-	 * metoda która dodaje do listy nowe wydarzenie pobieraj¹c dane z pól tekstowych
-	 * a nastêpnie wywo³uje metodê czyszcz¹c¹ te pola
+	 * metoda która dodaje do listy nowe wydarzenie pobieraj¹c dane z pól tekstowych (po pomyœlnej walidacji)
+	 * a nastêpnie wywo³uje metodê czyszcz¹c¹ te pola i metody aktualizuj¹ce widok
 	 */
 	public void createEvent() {
-		eventMan.addEvent(new Event(newEventFrame.getDateTextF().getText(), newEventFrame.getHourTextF().getText(), 
-				newEventFrame.getPlaceTextF().getText(), newEventFrame.getDescTextA().getText()));
-		newEventFrame.clearFields();
-		
-		//aktualizacja danych
-		calFrame.updateView();
-		evTabModel.setDataFromDB();
-		evTabModel.fireTableDataChanged();
+		if(isValidDate(newEventFrame.getDateTextF().getText())) {
+			if(isValidHour(newEventFrame.getHourTextF().getText())) {
+				if(!newEventFrame.getPlaceTextF().getText().equals("")) {
+					eventMan.addEvent(new Event(newEventFrame.getDateTextF().getText(), newEventFrame.getHourTextF().getText(), 
+							newEventFrame.getPlaceTextF().getText(), newEventFrame.getDescTextA().getText()));
+					newEventFrame.clearFields();
+					//aktualizacja danych
+					calFrame.updateView();
+					evTabModel.setDataFromDB();
+					evTabModel.fireTableDataChanged();
+				} else {
+					JOptionPane.showMessageDialog(null, "WprowadŸ miejce!", "B³¹d", JOptionPane.ERROR_MESSAGE);
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "B³êdny format godziny!", "B³¹d", JOptionPane.ERROR_MESSAGE);
+			}	
+		} else {
+			JOptionPane.showMessageDialog(null, "B³êdny format daty!", "B³¹d", JOptionPane.ERROR_MESSAGE);
+		}
 	}
+	
+	private boolean isValidHour(String hour) {
+		return hour.matches("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$");
+	}
+
+	public boolean isValidDate(String date) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+	    dateFormat.setLenient(false);
+	    try {
+	      dateFormat.parse(date.trim());
+	    } catch (ParseException pe) {
+	    	return false;
+	    }
+	    return true;
+	}
+	
 	
 }

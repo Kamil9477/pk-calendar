@@ -16,7 +16,7 @@ public class EventTableModel extends AbstractTableModel {
 	private DBManager dbMan;
 	
 	public EventTableModel(DBManager dbMan) {
-		columnNames = new String[]{"DATE", "HOUR", "PLACE", "DESCRIPTION"};
+		columnNames = new String[]{"DATA", "GODZINA", "MIEJSCE", "OPIS"};
 		this.dbMan = dbMan;
 		setDataFromDB();
 	}

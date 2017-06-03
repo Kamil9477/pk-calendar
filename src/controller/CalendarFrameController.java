@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +17,11 @@ import model.Event;
 import model.EventManager;
 import model.EventTableModel;
 
+/**
+ * kontroller g³ównego okna aplikacji, on "spina" wszystkie elementy programu
+ * @author Kamil
+ *
+ */
 public class CalendarFrameController {
 	/**
 	 * obiekt odpowiedzialny za zarz¹dzenie dat¹  wyœwietlan¹ na kalendarzu
@@ -106,7 +112,7 @@ public class CalendarFrameController {
 		});
 		
 		//listenery dla dni tygodnia - jeœli naciœniemy to pojawi siê informacja o wydarzeniach
-		//jeœli nie bêdzie tego dnia ¿adnego wydarzenia to poajwi siê odpowiedni komunikat
+		//jeœli nie bêdzie tego dnia ¿adnego wydarzenia to poajawi siê odpowiedni komunikat
 		for(int i=0; i<calFrame.getDays().length; i++) {
 			calFrame.getDays()[i].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -116,6 +122,7 @@ public class CalendarFrameController {
 			});
 		}
 		
+		//listener dla guzika "Przegl¹daj wyd."
 		calFrame.getShowEvents().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				eventsTableFrame.setVisible(true);
@@ -165,6 +172,7 @@ public class CalendarFrameController {
 	 */
 	public void printEvents(int day) {
 		List<Event> events = eventManager.getEvent(day, dateModel.getMonth(), dateModel.getYear());
+		Collections.sort(events);
 		
 		if(events.size() > 0) {
 			String data = "";

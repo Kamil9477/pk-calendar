@@ -135,9 +135,9 @@ public class DBManager {
 		String query = "SELECT * FROM events WHERE";
 		for(int i=0; i<fields.size(); i++){
 			if(i>0) {
-				query += " AND " + fields.get(i) + " LIKE '" + filters.get(i) + "'";
+				query += " AND " + fields.get(i) + " LIKE '" + filters.get(i) + "%'";
 			} else {
-				query += " " + fields.get(i) + " LIKE '" + filters.get(i) + "'";
+				query += " " + fields.get(i) + " LIKE '" + filters.get(i) + "%'";
 			}
 		}
 		
