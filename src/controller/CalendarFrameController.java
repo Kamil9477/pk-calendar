@@ -52,17 +52,27 @@ public class CalendarFrameController {
 	 */
 	private EventTableModel eventTableModel;
 	
+	/**
+	 * kontroler tabeli z wydarzeniami
+	 */
+	private EventTableController evTabController;
+	
 	public CalendarFrameController() {
+		//g³ówne okno
 		dateModel = new DateModel();
 		eventManager = new EventManager();
 		calFrame = new CalendarFrame(dateModel, eventManager);
 		calFrame.setVisible(true);
 		
-		newEventFrame = new NewEventFrame();
-		newEventController = new NewEventController(newEventFrame, eventManager, calFrame);
-		
 		eventTableModel = new EventTableModel(eventManager.getDBManager());
+		
+		//okno dodawania
+		newEventFrame = new NewEventFrame();
+		newEventController = new NewEventController(newEventFrame, eventManager, calFrame, eventTableModel);
+		
+		//okno z tabela wydarzeñ
 		eventsTableFrame = new EventsTableFrame(eventTableModel);
+		evTabController = new EventTableController(eventManager, eventTableModel, eventsTableFrame);
 		
 		//ustawienie listenerów
 		calFrame.getPrYear().addActionListener(new ActionListener() {

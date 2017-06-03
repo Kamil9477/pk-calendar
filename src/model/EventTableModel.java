@@ -2,6 +2,11 @@ package model;
 
 import javax.swing.table.AbstractTableModel;
 
+/**
+ * Klasa odpowiedzialna za model tabeli która wyœwietla wydarzenia
+ * @author Kamil
+ *
+ */
 public class EventTableModel extends AbstractTableModel {
 	private String[] columnNames;
 	private Object[][] data;

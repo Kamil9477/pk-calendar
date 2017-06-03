@@ -36,7 +36,7 @@ public class EventsTableFrame extends JFrame {
 	public EventsTableFrame(EventTableModel evTableModel) {
 		this.evTableModel = evTableModel;
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 1000, 387);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -88,7 +88,7 @@ public class EventsTableFrame extends JFrame {
 		descTextF.setText("");
 	}
 //----------------------------------------------------------------------------------------
-	private JTable getTable(){
+	public JTable getTable(){
 		if(table == null){
 			table = new JTable();
 			table.setModel(evTableModel);

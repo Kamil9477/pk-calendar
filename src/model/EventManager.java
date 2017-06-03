@@ -81,4 +81,25 @@ public class EventManager {
 		}
 		return events;
 	}
+	
+	/**
+	 * metoda która usuwa wydarzenia z listy wydarzeñ oraz przekauje polecenie
+	 * do DBManagera ¿eby usun¹³ je te¿ z bazy danych
+	 * metoda pobiera liste dat i godzin wydarzeñ które ma usun¹æ
+	 * @param dates
+	 * @param hours
+	 */
+	public void removeEvents(List<String> dates, List<String> hours) {
+		List<Event> toRemove = new ArrayList<Event>();
+		for(Event item : eventList) {
+			for(int i=0; i<dates.size(); i++) {
+				if(item.getDate().equals(dates.get(i)) && item.getHour().equals(hours.get(i))) {
+					dbManager.removeEventFromDB(item);
+					toRemove.add(item);
+				}
+			}
+		}
+		
+		eventList.removeAll(toRemove);
+	}
 }
