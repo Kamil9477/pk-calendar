@@ -11,9 +11,7 @@ public class Event {
 		this.hour = hour;
 		this.place = place;
 		this.description = description;
-		System.out.println("zrobione");
 	}
-	
 	
 	/**
 	 * Zwraca informacje o wydarzeniu

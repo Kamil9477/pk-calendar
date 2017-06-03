@@ -128,6 +128,7 @@ public class NewEventFrame extends JFrame {
 			descTextA = new JTextArea();
 			descTextA.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			descTextA.setBounds(116, 134, 363, 94);
+			descTextA.setLineWrap(true);
 		}
 		return descTextA;
 	}

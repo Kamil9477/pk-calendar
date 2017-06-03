@@ -24,6 +24,22 @@ public class EventManager {
 	}
 	
 	/**
+	 * zwraca liste wszystkich wydarzeñ
+	 * @return
+	 */
+	public List<Event> getAllEvents() {
+		return eventList;
+	}
+	
+	/**
+	 * zwraca obiekt DBManager, klasa EventTableModel tego potrzebuje
+	 * @return
+	 */
+	public DBManager getDBManager() {
+		return dbManager;
+	}
+	
+	/**
 	 * Dodaje wydarzenie do listy
 	 * @param event nowe wydarzenie
 	 */

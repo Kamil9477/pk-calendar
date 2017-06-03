@@ -9,17 +9,48 @@ import javax.swing.JButton;
 
 import view.CalendarFrame;
 import view.EventInfo;
+import view.EventsTableFrame;
 import view.NewEventFrame;
 import model.DateModel;
 import model.Event;
 import model.EventManager;
+import model.EventTableModel;
 
 public class CalendarFrameController {
+	/**
+	 * obiekt odpowiedzialny za zarz¹dzenie dat¹  wyœwietlan¹ na kalendarzu
+	 */
 	private DateModel dateModel;
+	
+	/**
+	 * g³ówne okno aplikacji
+	 */
 	private CalendarFrame calFrame;
+	
+	/**
+	 * obiekt odpowiedzialny za zarz¹dzanie wydarzeniami
+	 */
 	private EventManager eventManager;
+	
+	/**
+	 * okno dodawania nowych wydarzeñ
+	 */
 	private NewEventFrame newEventFrame;
+	
+	/**
+	 * kontroler okna nowych wydarzeñ
+	 */
 	private NewEventController newEventController;
+	
+	/**
+	 * okno do wyœwietlania tabeli z wszystkimi wydarzeniami
+	 */
+	private EventsTableFrame eventsTableFrame;
+	
+	/**
+	 * model dla tabeli z wszystkimi wydarzeniami
+	 */
+	private EventTableModel eventTableModel;
 	
 	public CalendarFrameController() {
 		dateModel = new DateModel();
@@ -28,7 +59,10 @@ public class CalendarFrameController {
 		calFrame.setVisible(true);
 		
 		newEventFrame = new NewEventFrame();
-		newEventController = new NewEventController(newEventFrame, eventManager);
+		newEventController = new NewEventController(newEventFrame, eventManager, calFrame);
+		
+		eventTableModel = new EventTableModel(eventManager.getDBManager());
+		eventsTableFrame = new EventsTableFrame(eventTableModel);
 		
 		//ustawienie listenerów
 		calFrame.getPrYear().addActionListener(new ActionListener() {
@@ -71,6 +105,12 @@ public class CalendarFrameController {
 				}
 			});
 		}
+		
+		calFrame.getShowEvents().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				eventsTableFrame.setVisible(true);
+			}
+		});
 	}
 	
 	/**

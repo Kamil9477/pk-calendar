@@ -26,6 +26,7 @@ public class CalendarFrame extends JFrame {
 	private JLabel yearLabel;
 	private JLabel slashLabel;
 	private JButton addEvent;
+	private JButton showEvents;
 
 	public CalendarFrame(DateModel dateModel, EventManager eventManager) {
 		this.dateModel = dateModel;
@@ -49,12 +50,13 @@ public class CalendarFrame extends JFrame {
 		contentPane.add(getMonthLabel());
 		//dolne przyciski
 		contentPane.add(getAddEvent());
+		contentPane.add(getShowEvents());
 		
 		//kontener na dni miesi¹ca
 		JPanel panel = new JPanel();
 		panel.setBounds(15, 90, 615, 393);
 		contentPane.add(panel);
-		panel.setLayout(new GridLayout(7, 7, 3, 3));
+		panel.setLayout(new GridLayout(7, 7, 3, 3));		
 				
 		//dodajemy do panelu nazwy dni tygodnia
 		for(int i=0; i<getDayNames().length; i++) {
@@ -69,7 +71,7 @@ public class CalendarFrame extends JFrame {
 		//¿eby po uruchomieniu by³a wyœwietlona plansza
 		updateView();
 	}
-	
+
 	public void updateView() {
 		//czyœcimy planszê kalendarza
 		for(int i=0; i<days.length; i++) {
@@ -111,6 +113,15 @@ public class CalendarFrame extends JFrame {
 	
 //metody ustawiaj¹ce wygl¹d komponentów
 //---------------------------------------------------------------------------------
+	public JButton getShowEvents() {
+		if (showEvents == null) {
+			showEvents = new JButton("Przegl\u0105daj wyd.");
+			showEvents.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			showEvents.setBounds(15, 499, 171, 45);
+		}
+		return showEvents;
+	}
+	
 	public JButton getPrYear() {
 		if(prYear == null) {
 			prYear = new JButton("<<");
