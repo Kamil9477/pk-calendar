@@ -72,7 +72,7 @@ public class CalendarFrameController {
 		
 		//okno z tabela wydarzeñ
 		eventsTableFrame = new EventsTableFrame(eventTableModel);
-		evTabController = new EventTableController(eventManager, eventTableModel, eventsTableFrame);
+		evTabController = new EventTableController(eventManager, eventTableModel, eventsTableFrame, calFrame);
 		
 		//ustawienie listenerów
 		calFrame.getPrYear().addActionListener(new ActionListener() {

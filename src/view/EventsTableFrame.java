@@ -149,7 +149,7 @@ public class EventsTableFrame extends JFrame {
 		return descTextF;
 	}
 	
-	private JButton getFilterButton() {
+	public JButton getFilterButton() {
 		if (filterButton == null) {
 			filterButton = new JButton("Filtruj");
 			filterButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -157,7 +157,8 @@ public class EventsTableFrame extends JFrame {
 		}
 		return filterButton;
 	}
-	private JButton getDelFilterButton() {
+	
+	public JButton getDelFilterButton() {
 		if (delFilterButton == null) {
 			delFilterButton = new JButton("Usu\u0144 filtry");
 			delFilterButton.setFont(new Font("Tahoma", Font.PLAIN, 18));

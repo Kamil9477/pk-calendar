@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -30,7 +32,18 @@ public class EventTableModel extends AbstractTableModel {
 			data[i][3] = dbMan.getEventsFromDB().get(i).getDesc();
 		}
 	}
-
+	
+	public void setFilter(List<String> fields, List<String> filters) {
+		List<Event> filtered = dbMan.getFilteredEvents(fields, filters);
+		data = new Object[filtered.size()][4];
+		for(int i=0; i<filtered.size(); i++) {
+			data[i][0] = filtered.get(i).getDate();
+			data[i][1] = filtered.get(i).getHour();
+			data[i][2] = filtered.get(i).getPlace();
+			data[i][3] = filtered.get(i).getDesc();
+		}
+	}
+	
 	public int getColumnCount() {
 		return columnNames.length;
 	}

@@ -117,5 +117,48 @@ public class DBManager {
 				System.out.println("B³¹d zamkniêcia po³¹czenia z baz¹ danych" + e.getMessage());
 			}
         }
-	}	
+	}
+	
+	public List<Event> getFilteredEvents(List<String> fields, List<String> filters) {
+		List<Event> events = new ArrayList<Event>();
+		String query = "SELECT * FROM events WHERE";
+		for(int i=0; i<fields.size(); i++){
+			if(i>0) {
+				query += " AND " + fields.get(i) + " LIKE '" + filters.get(i) + "'";
+			} else {
+				query += " " + fields.get(i) + " LIKE '" + filters.get(i) + "'";
+			}
+		}
+		
+		query += ";";
+		
+		System.out.println(query);
+		
+		Connection con = null;
+		Statement stm = null;
+		ResultSet rs = null;
+		
+		try {
+        	con = connectToDB();
+            stm = con.createStatement();
+            rs = stm.executeQuery(query);
+           
+            while (rs.next()) {
+			    events.add(new Event(rs.getString("DATE"), rs.getString("HOUR"), 
+			    		rs.getString("PLACE"), rs.getString("DESCRIPTION")));
+			}
+            
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+				stm.close();
+				con.close();
+			} catch(SQLException e) {
+				System.out.println("B³¹d zamkniêcia po³¹czenia z baz¹ danych" + e.getMessage());
+			}
+        }
+		
+		return events;
+	}
 }
