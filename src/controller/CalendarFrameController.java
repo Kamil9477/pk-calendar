@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import view.CalendarFrame;
 import view.EventInfo;
@@ -195,6 +196,7 @@ public class CalendarFrameController {
 	}
 	
 	public void loadFromXML() {
-		
+		String path = JOptionPane.showInputDialog("Podaj œcie¿kê pliku do wczytania: ");
+		eventManager.loadFromXML(path);
 	}
 }

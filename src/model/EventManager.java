@@ -126,4 +126,11 @@ public class EventManager {
 		}
 		xmlManager.exportToXML(eventsToExport, path);
 	}
+	
+	public void loadFromXML(String path) {
+		List<Event> events = xmlManager.loadFromXML(path);
+		for (Event event : events) {
+			System.out.println(event.toString());
+		}
+	}
 }
