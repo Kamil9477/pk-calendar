@@ -128,6 +128,13 @@ public class CalendarFrameController {
 				eventsTableFrame.setVisible(true);
 			}
 		});
+		
+		//listener dla "Wczytaj z XML"
+		calFrame.getLoadFromXML().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				loadFromXML();
+			}
+		});
 	}
 	
 	/**
@@ -185,5 +192,9 @@ public class CalendarFrameController {
 			new EventInfo("W tym dniu nie ma ¿adnych wydarzeñ!", 
 					day, dateModel.getMonth(), dateModel.getYear()).setVisible(true);
 		}
+	}
+	
+	public void loadFromXML() {
+		
 	}
 }

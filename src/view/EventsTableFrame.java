@@ -32,12 +32,13 @@ public class EventsTableFrame extends JFrame {
 	private JTextField descTextF;
 	private JButton filterButton;
 	private JButton delFilterButton;
+	private JButton exportToXML;
 
 	public EventsTableFrame(EventTableModel evTableModel) {
 		this.evTableModel = evTableModel;
 		
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 1000, 387);
+		setBounds(100, 100, 1000, 449);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -79,6 +80,7 @@ public class EventsTableFrame extends JFrame {
 		contentPane.add(getDescTextF());
 		contentPane.add(getFilterButton());
 		contentPane.add(getDelFilterButton());
+		contentPane.add(getExportToXML());
 	}
 
 	public void clearFields() {
@@ -104,7 +106,7 @@ public class EventsTableFrame extends JFrame {
 		if(removeButton == null){
 			removeButton = new JButton("Usu\u0144 wybrane");
 			removeButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			removeButton.setBounds(15, 281, 152, 29);
+			removeButton.setBounds(15, 281, 199, 29);
 		}
 		return removeButton;
 	}
@@ -165,5 +167,14 @@ public class EventsTableFrame extends JFrame {
 			delFilterButton.setBounds(848, 313, 127, 29);
 		}
 		return delFilterButton;
+	}
+	
+	public JButton getExportToXML() {
+		if (exportToXML == null) {
+			exportToXML = new JButton("Eksportuj wybrane XML");
+			exportToXML.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			exportToXML.setBounds(15, 314, 199, 29);
+		}
+		return exportToXML;
 	}
 }

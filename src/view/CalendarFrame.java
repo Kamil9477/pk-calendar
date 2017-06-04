@@ -27,6 +27,7 @@ public class CalendarFrame extends JFrame {
 	private JLabel slashLabel;
 	private JButton addEvent;
 	private JButton showEvents;
+	private JButton loadFromXML;
 
 	public CalendarFrame(DateModel dateModel, EventManager eventManager) {
 		this.dateModel = dateModel;
@@ -51,12 +52,13 @@ public class CalendarFrame extends JFrame {
 		//dolne przyciski
 		contentPane.add(getAddEvent());
 		contentPane.add(getShowEvents());
+		contentPane.add(getLoadFromXML());
 		
 		//kontener na dni miesi¹ca
 		JPanel panel = new JPanel();
 		panel.setBounds(15, 90, 615, 393);
 		contentPane.add(panel);
-		panel.setLayout(new GridLayout(7, 7, 3, 3));		
+		panel.setLayout(new GridLayout(7, 7, 3, 3));				
 				
 		//dodajemy do panelu nazwy dni tygodnia
 		for(int i=0; i<getDayNames().length; i++) {
@@ -113,6 +115,16 @@ public class CalendarFrame extends JFrame {
 	
 //metody ustawiaj¹ce wygl¹d komponentów
 //---------------------------------------------------------------------------------
+
+	public JButton getLoadFromXML() {
+		if (loadFromXML == null) {
+			loadFromXML = new JButton("Wczytaj z XML");
+			loadFromXML.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			loadFromXML.setBounds(241, 499, 165, 45);
+		}
+		return loadFromXML;
+	}
+	
 	public JButton getShowEvents() {
 		if (showEvents == null) {
 			showEvents = new JButton("Przegl\u0105daj wyd.");

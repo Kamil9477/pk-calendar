@@ -16,10 +16,16 @@ public class EventManager {
 	private DBManager dbManager;
 	
 	/**
+	 * obiekt odpowiedzialny z zapis i odczyt z XML
+	 */
+	private XMLManager xmlManager;
+	
+	/**
 	 * w konstruktorze ³¹dujemy do listy wszystkie wydarzenia z bazy danych
 	 */
 	public EventManager() {
 		dbManager = new DBManager();
+		xmlManager = new XMLManager();
 		eventList = dbManager.getEventsFromDB();
 	}
 	
@@ -101,5 +107,23 @@ public class EventManager {
 		}
 		
 		eventList.removeAll(toRemove);
+	}
+	
+	/**
+	 * metoda tworzy liste wydarzeñ do exportu i przekazuje je do XMLManagera
+	 * @param dates 
+	 * @param hours
+	 * @param path
+	 */
+	public void exportToXML(List<String> dates, List<String> hours, String path) {
+		List<Event> eventsToExport = new ArrayList<Event>();
+		for(Event item : eventList) {
+			for(int i=0; i<dates.size(); i++) {
+				if(item.getDate().equals(dates.get(i)) && item.getHour().equals(hours.get(i))) {
+					eventsToExport.add(item);
+				}
+			}
+		}
+		xmlManager.exportToXML(eventsToExport, path);
 	}
 }

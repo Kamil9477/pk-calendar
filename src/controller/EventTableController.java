@@ -43,11 +43,17 @@ public class EventTableController {
 				removeFilters();
 			}
 		});
+		
+		evTabFrame.getExportToXML().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				exportToXML();
+			}
+		});
 	}
 	
 	/**
 	 * metoda tworzy listê dat i godzin wybranych do usuniêcia wydarzeñ
-	 * i przekazuje je dalej do usuniêcia
+	 * i przekazuje je do EventManagera 
 	 */
 	public void removeEvent() {
 		int[] selected = evTabFrame.getTable().getSelectedRows();
@@ -71,6 +77,9 @@ public class EventTableController {
 		}
 	}
 	
+	/**
+	 * metoda zczytuje z pól tekstowych filtry i przekazuje je w postaci dwóch list dalej
+	 */
 	public void filterEvents() {
 		if(evTabFrame.getDateTextF().getText().equals("") && evTabFrame.getHourTextF().getText().equals("")
 				&& evTabFrame.getPlaceTextF().getText().equals("") && evTabFrame.getDescTextF().getText().equals("")) {
@@ -104,9 +113,32 @@ public class EventTableController {
 		}
 	}
 	
+	/**
+	 * metoda usuwa filtry, czyli ustawia pocz¹tkowy widok tabeli
+	 */
 	public void removeFilters() {
 		evTabFrame.clearFields();
 		evTabModel.setDataFromDB();
 		evTabModel.fireTableDataChanged();
+	}
+	
+	/**
+	 * metoda tworzy liste dat i godzin zaznaczonych wydarzen
+	 * i przekazuje to EventManagera
+	 */
+	public void exportToXML() {
+		int[] selected = evTabFrame.getTable().getSelectedRows();
+		if (selected.length > 0) {
+			String path = JOptionPane.showInputDialog("Podaj œcie¿kê pliku do eksportu: ");
+			List<String> dates = new ArrayList<String>();
+			List<String> hours = new ArrayList<String>();
+			for (int i = 0; i < selected.length; i++) {
+				dates.add((String) evTabModel.getValueAt(selected[i], 0));
+				hours.add((String) evTabModel.getValueAt(selected[i], 1));
+			}
+			eventMan.exportToXML(dates, hours, path);
+		} else {
+			JOptionPane.showMessageDialog(null, "Nie zaznaczono ¿adnego wydarzenia!", "B³¹d", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }
