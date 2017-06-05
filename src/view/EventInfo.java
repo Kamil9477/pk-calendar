@@ -16,8 +16,7 @@ import java.awt.Font;
 /**
  * Klasa odpowiadaj¹ca za wyœwietlanie okienka 
  * z informacjami o wydarzeniach w danym dniu
- * @author Kamil
- 
+ *
  */
 public class EventInfo extends JDialog {
 	public EventInfo(String data, int day, int month, int year) {

@@ -16,8 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
- * JFrame odpowiedzialna za wyœwietlanie wszytskih wydarzeñ w formie tabeli
- * @author Kamil
+ * Okno wyœwietlaj¹ce wszytskie wydarzeñ w formie tabeli
  *
  */
 public class EventsTableFrame extends JFrame {
@@ -82,7 +81,10 @@ public class EventsTableFrame extends JFrame {
 		contentPane.add(getDelFilterButton());
 		contentPane.add(getExportToXML());
 	}
-
+	
+	/**
+	 * metoda która czyœci pola tekstowe filtrów
+	 */
 	public void clearFields() {
 		dateTextF.setText("");
 		hourTextF.setText("");

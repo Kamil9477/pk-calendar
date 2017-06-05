@@ -4,37 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * klasa odpowiedzialna za zarz¹dzanie wydarzeniami
+ *
+ */
 public class EventManager {
-	/**
-	 * lista wydarzeñ
-	 */
 	private List<Event> eventList;
-	
-	/**
-	 * obiekt odpowiedzialny za komunikomanie siê z baz¹ danych
-	 */
 	private DBManager dbManager;
-	
-	/**
-	 * obiekt odpowiedzialny z zapis i odczyt z XML
-	 */
 	private XMLManager xmlManager;
 	
-	/**
-	 * w konstruktorze ³¹dujemy do listy wszystkie wydarzenia z bazy danych
-	 */
 	public EventManager() {
 		dbManager = new DBManager();
 		xmlManager = new XMLManager();
 		eventList = dbManager.getEventsFromDB();
-	}
-	
-	/**
-	 * zwraca liste wszystkich wydarzeñ
-	 * @return
-	 */
-	public List<Event> getAllEvents() {
-		return eventList;
 	}
 	
 	/**
@@ -127,10 +109,16 @@ public class EventManager {
 		xmlManager.exportToXML(eventsToExport, path);
 	}
 	
+	/**
+	 * metoda która dodaje do listy i bazy danych wczytane wydarzenia 
+	 * z pliku pod œcie¿k¹ podan¹ w parametrze
+	 * @param path
+	 */
 	public void loadFromXML(String path) {
 		List<Event> events = xmlManager.loadFromXML(path);
-		for (Event event : events) {
-			System.out.println(event.toString());
+		eventList.addAll(events);
+		for(Event item : events) {
+			dbManager.addEventToDB(item);
 		}
 	}
 }

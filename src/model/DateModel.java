@@ -1,21 +1,34 @@
 package model;
 
+/**
+ * klasa odpowiedzialna za przechowywanie danych 
+ * dotycz¹cych wyœwietlanego w widku kalendarza
+ *
+ */
 public class DateModel {
 	private int month;
 	private int year;
 	private int monthDays;
 	
 	public DateModel() {
-		//TODO zmienic to
-		month = 5;
+		//TODO poprawiæ
+		month = 6;
 		year = 2017;
 		calculateMonthDays();
 	}
 	
+	/**
+	 * zwraca miesi¹c
+	 * @return
+	 */
 	public int getMonth() {
 		return month;
 	}
 	
+	/**
+	 * zmienia miesi¹æ na podany w parametrze
+	 * @param newVal
+	 */
 	public void setMonth(int newVal) {
 		if(newVal == 13) {
 			month = 1;
@@ -29,10 +42,18 @@ public class DateModel {
 		calculateMonthDays();
 	}
 	
+	/**
+	 * zwraca rok
+	 * @return
+	 */
 	public int getYear() {
 		return year;
 	}
 	
+	/**
+	 * zmienia rok na podany w parametrze
+	 * @param newVal 
+	 */
 	public void setYear(int newVal) {
 		if(newVal >= 1900 && newVal <=2099) {
 			year = newVal;
@@ -40,6 +61,9 @@ public class DateModel {
 		}	
 	}
 	
+	/**
+	 * metoda oblicza ile dni ma dany miesi¹c
+	 */
 	public void calculateMonthDays() {
 		if(month == 2) {
 			monthDays = 28;
@@ -50,11 +74,18 @@ public class DateModel {
 		}
 	}
 	
+	/**
+	 * zwraca liczbe dni w miesiacu
+	 * @return liczba dni
+	 */
 	public int getMonthDays() {
 		return monthDays;
 	}
 	
-	//algorytm wyznaczania pierwszego dnia miesi¹ca
+	/**
+	 * metoda zwraca którego dnia zaczyna siê obecny miesi¹c
+	 * @return
+	 */
 	public int getFirstDay() {
 		int day = 1;
 		int startYear = 1900;
@@ -83,16 +114,14 @@ public class DateModel {
 		return day;
 	}
 	
+	/**
+	 * sprawdza czy rok jest przestêpny
+	 * @return true jeœli tak
+	 */
 	private boolean leapYear() {		
 		if((year%4==0 && year%100!=0) || year%400==0) {
 			return true;
 		}
 		return false;
-	}
-	
-	
-	public void print() {
-		System.out.println("Rok " + year + " miesiac " + month);
-	}
-	
+	}	
 }

@@ -10,8 +10,6 @@ import java.util.List;
 /**
  * klasa odpowiedzialna za komunikacjê z baz¹ danych
  * przy ka¿dym odczycie/zapisie tworzymy nowe po³¹czenie i je zamykamy
- * @author Kamil
- *
  */
 public class DBManager {
 	
@@ -83,7 +81,7 @@ public class DBManager {
 	}
 	
 	/**
-	 * metoda odpowiedzialna za nawi¹zywanie po³¹czenia z baz¹ danych
+	 * nawi¹zuje po³¹czenie z baz¹ danych
 	 * @return con po³¹czenie z baz¹ danych
 	 * @throws ClassNotFoundException 
 	 * @throws SQLException 

@@ -19,49 +19,17 @@ import model.EventManager;
 import model.EventTableModel;
 
 /**
- * kontroller g³ównego okna aplikacji, on "spina" wszystkie elementy programu
- * @author Kamil
+ * kontroler g³ównego okna aplikacji, on "spina" wszystkie elementy programu
  *
  */
 public class CalendarFrameController {
-	/**
-	 * obiekt odpowiedzialny za zarz¹dzenie dat¹  wyœwietlan¹ na kalendarzu
-	 */
 	private DateModel dateModel;
-	
-	/**
-	 * g³ówne okno aplikacji
-	 */
 	private CalendarFrame calFrame;
-	
-	/**
-	 * obiekt odpowiedzialny za zarz¹dzanie wydarzeniami
-	 */
 	private EventManager eventManager;
-	
-	/**
-	 * okno dodawania nowych wydarzeñ
-	 */
 	private NewEventFrame newEventFrame;
-	
-	/**
-	 * kontroler okna nowych wydarzeñ
-	 */
 	private NewEventController newEventController;
-	
-	/**
-	 * okno do wyœwietlania tabeli z wszystkimi wydarzeniami
-	 */
 	private EventsTableFrame eventsTableFrame;
-	
-	/**
-	 * model dla tabeli z wszystkimi wydarzeniami
-	 */
 	private EventTableModel eventTableModel;
-	
-	/**
-	 * kontroler tabeli z wydarzeniami
-	 */
 	private EventTableController evTabController;
 	
 	public CalendarFrameController() {
@@ -81,7 +49,7 @@ public class CalendarFrameController {
 		eventsTableFrame = new EventsTableFrame(eventTableModel);
 		evTabController = new EventTableController(eventManager, eventTableModel, eventsTableFrame, calFrame);
 		
-		//ustawienie listenerów
+		//listenery do przycisków przewijaj¹cych daty
 		calFrame.getPrYear().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				decYear();
@@ -139,7 +107,7 @@ public class CalendarFrameController {
 	}
 	
 	/**
-	 * Zmniejsza rok przechowywany w modelu
+	 * zmniejsza rok przechowywany w modelu
 	 * aktualizuje widok
 	 */
 	public void decYear() {
@@ -148,7 +116,7 @@ public class CalendarFrameController {
 	}
 	
 	/**
-	 * Zwiêksza rok przechowywany w modelu
+	 * zwiêksza rok przechowywany w modelu
 	 * aktualizuje widok
 	 */
 	public void incYear() {
@@ -157,7 +125,7 @@ public class CalendarFrameController {
 	}
 	
 	/**
-	 * Zmniejsza miesi¹c przechowywany w modelu
+	 * zmniejsza miesi¹c przechowywany w modelu
 	 * aktualizuje widok
 	 */
 	public void decMonth() {
@@ -166,7 +134,7 @@ public class CalendarFrameController {
 	}
 	
 	/**
-	 * Zwiêksza miesi¹c przechowywany w modelu
+	 * wwiêksza miesi¹c przechowywany w modelu
 	 * aktualizuje widok
 	 */
 	public void incMonth() {
@@ -175,7 +143,7 @@ public class CalendarFrameController {
 	}
 	
 	/**
-	 * Wypisuje informacje o wydarzeniach w danym dniu
+	 * wypisuje informacje o wydarzeniach w danym dniu
 	 * tworzy nowego JDialoga z informacjami
 	 */
 	public void printEvents(int day) {
@@ -195,8 +163,16 @@ public class CalendarFrameController {
 		}
 	}
 	
+	/**
+	 * metoda uruchamiana naciœniêciem przycisku "Wczytaj z XML"
+	 * pobiera od u¿ytkownika œcie¿kê pliku i wywo³uje metodê z Event Managera
+	 * odœwie¿a widok
+	 */
 	public void loadFromXML() {
 		String path = JOptionPane.showInputDialog("Podaj œcie¿kê pliku do wczytania: ");
 		eventManager.loadFromXML(path);
+		calFrame.updateView();
+		eventTableModel.setDataFromDB();
+		eventTableModel.fireTableDataChanged();
 	}
 }

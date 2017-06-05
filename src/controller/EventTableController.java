@@ -13,6 +13,9 @@ import model.DBManager;
 import model.EventManager;
 import model.EventTableModel;
 
+/**
+ * Kontroler okienka do przegl¹dania wszystkich wydarzeñ
+ */
 public class EventTableController {
 	EventManager eventMan;
 	EventTableModel evTabModel;

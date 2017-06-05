@@ -10,6 +10,10 @@ import model.DateModel;
 import model.EventManager;
 import model.Event;
 
+/**
+ * G³owne okno kalendarza
+ *
+ */
 public class CalendarFrame extends JFrame {
 	
 	private DateModel dateModel;
@@ -73,7 +77,10 @@ public class CalendarFrame extends JFrame {
 		//¿eby po uruchomieniu by³a wyœwietlona plansza
 		updateView();
 	}
-
+	
+	/**
+	 * metoda aktualizuj¹ca widok
+	 */
 	public void updateView() {
 		//czyœcimy planszê kalendarza
 		for(int i=0; i<days.length; i++) {

@@ -14,6 +14,10 @@ import model.Event;
 import model.EventManager;
 import model.EventTableModel;
 
+/**
+ * kontroler okienka do dodawania nowych wydarzeñ
+ *
+ */
 public class NewEventController {
 	private NewEventFrame newEventFrame;
 	private EventManager eventMan;
@@ -60,10 +64,20 @@ public class NewEventController {
 		}
 	}
 	
+	/**
+	 * sprawdza (za pomoc¹ wyra¿eñ regularnych) czy podana w parametrze godzina jest poprawna
+	 * @param hour godzina
+	 * @return true jeœli godzina jest poprawna
+	 */
 	private boolean isValidHour(String hour) {
 		return hour.matches("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$");
 	}
-
+	
+	/**
+	 * sprawdza czy podana w parametrze data jest w formacie dd-mm-yyyy
+	 * @param date data
+	 * @return true jeœli data jest poprawna
+	 */
 	public boolean isValidDate(String date) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 	    dateFormat.setLenient(false);

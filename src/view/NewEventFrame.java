@@ -12,6 +12,10 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 
+/**
+ * Okno dodawania nowego wydarzenia
+ *
+ */
 public class NewEventFrame extends JFrame {
 
 	private JPanel contentPane;
@@ -47,6 +51,9 @@ public class NewEventFrame extends JFrame {
 		contentPane.add(getAddButton());
 	}
 	
+	/**
+	 * metoda czyszcz¹ca pola tekstowe
+	 */
 	public void clearFields() {
 		dateTextF.setText("DD-MM-YYYY");
 		hourTextF.setText("HH:MM");

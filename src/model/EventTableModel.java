@@ -6,8 +6,7 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
- * Klasa odpowiedzialna za model tabeli która wyœwietla wydarzenia
- * @author Kamil
+ * Model tabeli która wyœwietla wydarzenia
  *
  */
 public class EventTableModel extends AbstractTableModel {

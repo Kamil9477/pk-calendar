@@ -2,10 +2,10 @@ package model;
 
 /**
  * klasa reprezentuj¹ca pojedyñcze wydarzenie
- * @author Kamil
  *
  */
 public class Event implements Comparable<Event>{
+	
 	private String date;
 	private String hour;
 	private String place;
@@ -97,7 +97,7 @@ public class Event implements Comparable<Event>{
 	}
 	
 	/**
-	 * metoda potrzebna to sortowania po dacie
+	 * metoda potrzebna do sortowania po dacie
 	 * musia³em samemu zaimplementowaæ 
 	 * bo compareTo nie wspiera typów prymitywnych
 	 */

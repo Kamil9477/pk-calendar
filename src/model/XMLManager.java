@@ -9,11 +9,12 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import com.thoughtworks.xstream.XStream;
 
 /**
  * klasa odpowiedzialna za zapis i odczyt z XML
- * @author Kamil
  *
  */
 public class XMLManager {
@@ -26,12 +27,13 @@ public class XMLManager {
 	public List<Event> loadFromXML(String path) {
 		List<Event> events = new ArrayList<Event>();
 		XStream xstream = new XStream();
+		xstream.alias("Events", List.class);
 		xstream.alias("Event", Event.class);
 		FileInputStream fis = null;
 		
 		try {
 			fis = new FileInputStream(path);
-			events.add((Event) xstream.fromXML(fis));
+			events = (List<Event>) (xstream.fromXML(fis));
 		} catch(FileNotFoundException e) {
 			e.printStackTrace();
 		} catch(IOException e) {
@@ -48,13 +50,15 @@ public class XMLManager {
 	}
 	
 	/**
-	 * metoda ekportuje do pliku pod œcie¿k¹ podan¹ 
-	 * w parametrze wydarzenia podane w pierwszym parametrze
+	 * metoda ekportuje do pliku pod œcie¿k¹ podan¹ w drugim parametrze 
+	 * wydarzenia podane w pierwszym parametrze
 	 * @param events lista wydarzen
 	 * @param path sciezka
 	 */
 	public void exportToXML(List<Event> events, String path) {
 		XStream xstream = new XStream();
+		
+		xstream.alias("Events", List.class);
 		xstream.alias("Event", Event.class);
 		
 		FileOutputStream fos = null;
@@ -63,11 +67,10 @@ public class XMLManager {
 	    try {
 			fos = new FileOutputStream(path + ".xml");
 			fos.write("<?xml version=\"1.0\"?>".getBytes("UTF-8"));
-			for(Event item : events){
-		    	xml = xstream.toXML(item);
-		    	byte[] bytes = xml.getBytes("UTF-8");
-			    fos.write(bytes);
-		    }      
+		    xml = xstream.toXML(events);
+		    byte[] bytes = xml.getBytes("UTF-8");
+			fos.write(bytes);
+			JOptionPane.showMessageDialog(null, "Wydarzenia wyeksportowano do pliku " + path + ".xml");   
 		} catch(FileNotFoundException e) {
 			e.printStackTrace();
 		} catch(UnsupportedEncodingException e) {

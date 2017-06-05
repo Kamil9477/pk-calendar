@@ -1,11 +1,20 @@
-<?xml version="1.0"?><Event>
-  <date>7-7-2017</date>
-  <hour>15:00</hour>
-  <place>Łódź, Bałuty</place>
-  <description>Mecz tenisa z Władkiem.</description>
-</Event><Event>
-  <date>14-5-2017</date>
-  <hour>16:30</hour>
-  <place>Łódź, bałuty</place>
-  <description>Obiadek u babci.</description>
-</Event>
+<?xml version="1.0"?><Events>
+  <Event>
+    <date>15-5-2017</date>
+    <hour>19:00</hour>
+    <place>Łódź, Piotrkowska</place>
+    <description>Spotkanie z kolegami.</description>
+  </Event>
+  <Event>
+    <date>20-5-2017</date>
+    <hour>16:30</hour>
+    <place>Łódź, bałuty</place>
+    <description>Obiadek u cioci Zosi.</description>
+  </Event>
+  <Event>
+    <date>20-6-2017</date>
+    <hour>15:00</hour>
+    <place>Łódź, Politechniki</place>
+    <description>Egzamin z baz danych.</description>
+  </Event>
+</Events>
