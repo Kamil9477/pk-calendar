@@ -17,6 +17,7 @@ import net.fortuna.ical4j.model.property.CalScale;
 import net.fortuna.ical4j.model.property.Location;
 import net.fortuna.ical4j.model.property.ProdId;
 import net.fortuna.ical4j.model.property.Uid;
+import net.fortuna.ical4j.model.property.Version;
 import net.fortuna.ical4j.util.UidGenerator;
 import net.fortuna.ical4j.validate.ValidationException;
 
@@ -25,9 +26,16 @@ import net.fortuna.ical4j.validate.ValidationException;
  *
  */
 public class ICalManager {
+	/**
+	 * eksportuje podan¹ w parametrze listê wydarzeñ do pliku podanego w drugim parametrze
+	 * @param file plik
+	 * @param events lista wydarzeñ
+	 */
 	public void export(File file, List<Event> events) {
+		//tworzymy kalendarz który bêdziemy eksportowaæ
 		net.fortuna.ical4j.model.Calendar icsCalendar = new net.fortuna.ical4j.model.Calendar();
 		icsCalendar.getProperties().add(new ProdId("-//Events Calendar//iCal4j 1.0//EN"));
+		icsCalendar.getProperties().add(Version.VERSION_2_0);
 		icsCalendar.getProperties().add(CalScale.GREGORIAN);
 		
 		for(Event ev : events) {

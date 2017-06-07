@@ -38,8 +38,8 @@ public class EventTableModel extends AbstractTableModel {
 	
 	/**
 	 * metoda wyœwietla w tabeli wydarzenia o podanych filtrach
-	 * @param fields
-	 * @param filters
+	 * @param fields pola po których filtrujemy
+	 * @param filters filtry
 	 */
 	public void setFilter(List<String> fields, List<String> filters) {
 		List<Event> filtered = dbMan.getFilteredEvents(fields, filters);

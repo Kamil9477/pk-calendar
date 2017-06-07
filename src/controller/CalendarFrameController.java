@@ -131,7 +131,7 @@ public class CalendarFrameController {
 	}
 	
 	/**
-	 * zmniejsza rok przechowywany w modelu
+	 * zmniejsza rok przechowywany w modelu,
 	 * aktualizuje widok
 	 */
 	public void decYear() {
@@ -140,7 +140,7 @@ public class CalendarFrameController {
 	}
 	
 	/**
-	 * zwiêksza rok przechowywany w modelu
+	 * zwiêksza rok przechowywany w modelu,
 	 * aktualizuje widok
 	 */
 	public void incYear() {
@@ -149,7 +149,7 @@ public class CalendarFrameController {
 	}
 	
 	/**
-	 * zmniejsza miesi¹c przechowywany w modelu
+	 * zmniejsza miesi¹c przechowywany w modelu,
 	 * aktualizuje widok
 	 */
 	public void decMonth() {
@@ -158,7 +158,7 @@ public class CalendarFrameController {
 	}
 	
 	/**
-	 * wwiêksza miesi¹c przechowywany w modelu
+	 * zwiêksza miesi¹c przechowywany w modelu,
 	 * aktualizuje widok
 	 */
 	public void incMonth() {
@@ -167,8 +167,9 @@ public class CalendarFrameController {
 	}
 	
 	/**
-	 * wypisuje informacje o wydarzeniach w danym dniu
+	 * wypisuje informacje o wydarzeniach w danym dniu,
 	 * tworzy nowego JDialoga z informacjami
+	 * @param day dzien dla którego maj¹ byæ wypisane wydarzenia
 	 */
 	public void printEvents(int day) {
 		List<Event> events = eventManager.getEvent(day, dateModel.getMonth(), dateModel.getYear());

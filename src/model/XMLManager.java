@@ -15,14 +15,14 @@ import javax.swing.JOptionPane;
 import com.thoughtworks.xstream.XStream;
 
 /**
- * klasa odpowiedzialna za zapis i odczyt z XML
+ * Klasa odpowiedzialna za zapis i odczyt z XML
  *
  */
 public class XMLManager {
 	
 	/**
 	 * metoda zwraca liste wydarzen wczytana z pliku pod sciezka podana w paramatrze
-	 * @param path sciezka
+	 * @param file plik
 	 * @return lista wydarzen
 	 */
 	public List<Event> loadFromXML(File file) {
@@ -53,7 +53,7 @@ public class XMLManager {
 	 * metoda ekportuje do pliku pod œcie¿k¹ podan¹ w drugim parametrze 
 	 * wydarzenia podane w pierwszym parametrze
 	 * @param events lista wydarzen
-	 * @param path sciezka
+	 * @param file plik
 	 */
 	public void exportToXML(List<Event> events, File file) {
 		XStream xstream = new XStream();

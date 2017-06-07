@@ -1,14 +1,29 @@
 package model;
 
 /**
- * klasa reprezentuj¹ca pojedyñcze wydarzenie
+ * Klasa reprezentuj¹ca pojedyñcze wydarzenie
  *
  */
 public class Event implements Comparable<Event>{
 	
+	/**
+	 * data
+	 */
 	private String date;
+	
+	/**
+	 * godzina
+	 */
 	private String hour;
+	
+	/**
+	 * miejsce
+	 */
 	private String place;
+	
+	/**
+	 * opis
+	 */
 	private String description;
 	
 	public Event(String date, String hour, String place, String description) {

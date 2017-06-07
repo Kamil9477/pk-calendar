@@ -63,7 +63,7 @@ public class EventTableController {
 	}
 	
 	/**
-	 * metoda tworzy listê dat i godzin wybranych do usuniêcia wydarzeñ
+	 * tworzy listê dat i godzin wybranych do usuniêcia wydarzeñ
 	 * i przekazuje je do EventManagera 
 	 */
 	public void removeEvent() {
@@ -89,7 +89,7 @@ public class EventTableController {
 	}
 	
 	/**
-	 * metoda zczytuje z pól tekstowych filtry i przekazuje je w postaci dwóch list dalej
+	 * zczytuje z pól tekstowych filtry i przekazuje je w postaci dwóch list do EventManagera
 	 */
 	public void filterEvents() {
 		if(evTabFrame.getDateTextF().getText().equals("") && evTabFrame.getHourTextF().getText().equals("")
@@ -125,7 +125,7 @@ public class EventTableController {
 	}
 	
 	/**
-	 * metoda usuwa filtry, czyli ustawia pocz¹tkowy widok tabeli
+	 * usuwa filtry, czyli ustawia pocz¹tkowy widok tabeli
 	 */
 	public void removeFilters() {
 		evTabFrame.clearFields();
@@ -136,6 +136,7 @@ public class EventTableController {
 	/**
 	 * metoda tworzy liste dat i godzin zaznaczonych wydarzen do exportu
 	 * i przekazuje to do EventManagera
+	 * @param destination parametr decyduj¹cy czy bêdzie to eksport do XML czy iCal
 	 */
 	public void export(String destination) {
 		int[] selected = evTabFrame.getTable().getSelectedRows();

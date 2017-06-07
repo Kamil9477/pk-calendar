@@ -14,7 +14,7 @@ import java.awt.Component;
 import javax.swing.Box;
 
 /**
- * Okienko wyœwietlaj¹ce informacje "O programie"
+ * Okno wyœwietlaj¹ce informacje "O programie"
  *
  */
 public class ProgramInfo extends JDialog {

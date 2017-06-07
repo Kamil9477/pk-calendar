@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * klasa odpowiedzialna za zarz¹dzanie wydarzeniami
+ * Klasa odpowiedzialna za zarz¹dzanie wydarzeniami,
+ * trzyma listê wydarzeñ
  *
  */
 public class EventManager {
@@ -24,7 +25,7 @@ public class EventManager {
 	
 	/**
 	 * zwraca obiekt DBManager, klasa EventTableModel tego potrzebuje
-	 * @return
+	 * @return obiekt dbManager
 	 */
 	public DBManager getDBManager() {
 		return dbManager;
@@ -32,7 +33,7 @@ public class EventManager {
 	
 	/**
 	 * Dodaje wydarzenie do listy
-	 * @param event nowe wydarzenie
+	 * @param ev nowe wydarzenie
 	 */
 	public void addEvent(Event ev) {
 		eventList.add(ev);
@@ -77,8 +78,8 @@ public class EventManager {
 	 * metoda która usuwa wydarzenia z listy wydarzeñ oraz przekauje polecenie
 	 * do DBManagera ¿eby usun¹³ je te¿ z bazy danych
 	 * metoda pobiera liste dat i godzin wydarzeñ które ma usun¹æ
-	 * @param dates
-	 * @param hours
+	 * @param dates lista dat
+	 * @param hours lista godzin
 	 */
 	public void removeEvents(List<String> dates, List<String> hours) {
 		List<Event> toRemove = new ArrayList<Event>();
@@ -96,9 +97,10 @@ public class EventManager {
 	
 	/**
 	 * metoda tworzy liste wydarzeñ do exportu i przekazuje je do XMLManagera
-	 * @param dates 
-	 * @param hours
-	 * @param file 
+	 * @param dates lista dat
+	 * @param hours lista godzin
+	 * @param file plik do eksportu
+	 * @param destination okreœla czy eksportujemy do XML czy iCal
 	 */
 	public void export(List<String> dates, List<String> hours, File file, String destination) {
 		List<Event> eventsToExport = new ArrayList<Event>();
@@ -120,7 +122,7 @@ public class EventManager {
 	/**
 	 * metoda która dodaje do listy i bazy danych wczytane wydarzenia 
 	 * z pliku pod œcie¿k¹ podan¹ w parametrze
-	 * @param path
+	 * @param file plik
 	 */
 	public void loadFromXML(File file) {
 		List<Event> events = xmlManager.loadFromXML(file);

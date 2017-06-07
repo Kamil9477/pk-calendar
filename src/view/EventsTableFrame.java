@@ -20,7 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
- * Okno wyœwietlaj¹ce wszytskie wydarzeñ w formie tabeli
+ * Okno wyœwietlaj¹ce wszystkie wydarzeñ w formie tabeli
  *
  */
 public class EventsTableFrame extends JFrame {

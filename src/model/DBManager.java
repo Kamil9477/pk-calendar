@@ -10,7 +10,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 /**
- * klasa odpowiedzialna za komunikacjê z baz¹ danych
+ * Klasa odpowiedzialna za komunikacjê z baz¹ danych,
  * przy ka¿dym odczycie/zapisie tworzymy nowe po³¹czenie i je zamykamy
  */
 public class DBManager {
@@ -96,7 +96,7 @@ public class DBManager {
 	
 	/**
 	 * metoda usuwa podane w parametrze wydarzenie z bazy danych
-	 * @param ev
+	 * @param ev wydarzenie
 	 */
 	public void removeEventFromDB(Event ev) {
 		String query = "DELETE FROM events WHERE " +
@@ -125,9 +125,9 @@ public class DBManager {
 	
 	/**
 	 * metoda zwraca liste wydarzeñ które pasuj¹ do podanych w parametrze filtrów
-	 * @param fields
-	 * @param filters
-	 * @return lista wydarzeñ
+	 * @param fields pola po których filtrujemy
+	 * @param filters filtry
+	 * @return events lista wydarzeñ
 	 */
 	public List<Event> getFilteredEvents(List<String> fields, List<String> filters) {
 		List<Event> events = new ArrayList<Event>();

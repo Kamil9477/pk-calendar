@@ -39,7 +39,7 @@ public class NewEventController {
 	}
 	
 	/**
-	 * metoda która dodaje do listy nowe wydarzenie pobieraj¹c dane z pól tekstowych (po pomyœlnej walidacji)
+	 * dodaje do listy nowe wydarzenie pobieraj¹c dane z pól tekstowych (po pomyœlnej walidacji)
 	 * a nastêpnie wywo³uje metodê czyszcz¹c¹ te pola i metody aktualizuj¹ce widok
 	 */
 	public void createEvent() {
@@ -88,6 +88,4 @@ public class NewEventController {
 	    }
 	    return true;
 	}
-	
-	
 }

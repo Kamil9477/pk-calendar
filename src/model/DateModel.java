@@ -1,8 +1,8 @@
 package model;
 
 /**
- * klasa odpowiedzialna za przechowywanie danych 
- * dotycz¹cych wyœwietlanego w widku kalendarza
+ * Klasa odpowiedzialna za przechowywanie obecnego miesi¹ca i roku,
+ * z niej generuje siê g³ówny widok kalendarza
  *
  */
 public class DateModel {
@@ -19,7 +19,7 @@ public class DateModel {
 	
 	/**
 	 * zwraca miesi¹c
-	 * @return
+	 * @return miesi¹c
 	 */
 	public int getMonth() {
 		return month;
@@ -27,7 +27,7 @@ public class DateModel {
 	
 	/**
 	 * zmienia miesi¹æ na podany w parametrze
-	 * @param newVal
+	 * @param newVal nowy miesi¹c
 	 */
 	public void setMonth(int newVal) {
 		if(newVal == 13) {
@@ -44,7 +44,7 @@ public class DateModel {
 	
 	/**
 	 * zwraca rok
-	 * @return
+	 * @return rok
 	 */
 	public int getYear() {
 		return year;
@@ -52,7 +52,7 @@ public class DateModel {
 	
 	/**
 	 * zmienia rok na podany w parametrze
-	 * @param newVal 
+	 * @param newVal nowy rok
 	 */
 	public void setYear(int newVal) {
 		if(newVal >= 1900 && newVal <=2099) {
@@ -84,7 +84,7 @@ public class DateModel {
 	
 	/**
 	 * metoda zwraca którego dnia zaczyna siê obecny miesi¹c
-	 * @return
+	 * @return dzieñ w którym zaczyna siê miesi¹c
 	 */
 	public int getFirstDay() {
 		int day = 1;

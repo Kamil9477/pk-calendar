@@ -14,8 +14,7 @@ import javax.swing.JTextArea;
 
 import java.awt.Font;
 /**
- * Klasa odpowiadaj¹ca za wyœwietlanie okienka 
- * z informacjami o wydarzeniach w danym dniu
+ * Okno wyœwitlaj¹ce informacje o wydarzeniach w danym dniu
  *
  */
 public class EventInfo extends JDialog {
