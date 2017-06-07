@@ -13,11 +13,13 @@ public class EventManager {
 	private List<Event> eventList;
 	private DBManager dbManager;
 	private XMLManager xmlManager;
+	private ICalManager iCalManager;
 	
 	public EventManager() {
 		dbManager = new DBManager();
 		xmlManager = new XMLManager();
 		eventList = dbManager.getEventsFromDB();
+		iCalManager = new ICalManager();
 	}
 	
 	/**
@@ -98,7 +100,7 @@ public class EventManager {
 	 * @param hours
 	 * @param file 
 	 */
-	public void exportToXML(List<String> dates, List<String> hours, File file) {
+	public void export(List<String> dates, List<String> hours, File file, String destination) {
 		List<Event> eventsToExport = new ArrayList<Event>();
 		for(Event item : eventList) {
 			for(int i=0; i<dates.size(); i++) {
@@ -107,7 +109,12 @@ public class EventManager {
 				}
 			}
 		}
-		xmlManager.exportToXML(eventsToExport, file);
+		
+		if(destination.equals("XML")) {
+			xmlManager.exportToXML(eventsToExport, file);
+		} else {
+			iCalManager.export(file, eventsToExport);
+		}	
 	}
 	
 	/**

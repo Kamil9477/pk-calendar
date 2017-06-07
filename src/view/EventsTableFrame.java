@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,9 +10,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 
 import model.EventTableModel;
+
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+
 import java.awt.Font;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -32,6 +36,7 @@ public class EventsTableFrame extends JFrame {
 	private JButton filterButton;
 	private JButton delFilterButton;
 	private JButton exportToXML;
+	private JButton exportToICal;
 
 	public EventsTableFrame(EventTableModel evTableModel) {
 		this.evTableModel = evTableModel;
@@ -54,22 +59,22 @@ public class EventsTableFrame extends JFrame {
 		//etykietki tekstowe
 		JLabel dateLabel = new JLabel("Data:");
 		dateLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		dateLabel.setBounds(240, 281, 69, 20);
+		dateLabel.setBounds(240, 300, 69, 20);
 		contentPane.add(dateLabel);
 		
 		JLabel hourlabel = new JLabel("Godzina:");
 		hourlabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		hourlabel.setBounds(240, 317, 86, 20);
+		hourlabel.setBounds(240, 336, 86, 20);
 		contentPane.add(hourlabel);
 		
 		JLabel placeLabel = new JLabel("Miejsce:");
 		placeLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		placeLabel.setBounds(502, 281, 69, 20);
+		placeLabel.setBounds(502, 300, 69, 20);
 		contentPane.add(placeLabel);
 		
 		JLabel descLabel = new JLabel("Opis:");
 		descLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		descLabel.setBounds(502, 317, 69, 20);
+		descLabel.setBounds(502, 336, 69, 20);
 		contentPane.add(descLabel);
 		
 		//pola tekstowe na filtry
@@ -80,8 +85,11 @@ public class EventsTableFrame extends JFrame {
 		contentPane.add(getFilterButton());
 		contentPane.add(getDelFilterButton());
 		contentPane.add(getExportToXML());
+		
+		
+		contentPane.add(getExportToICal());
 	}
-	
+
 	/**
 	 * metoda która czyœci pola tekstowe filtrów
 	 */
@@ -107,7 +115,7 @@ public class EventsTableFrame extends JFrame {
 	public JButton getRemoveButton() {
 		if(removeButton == null){
 			removeButton = new JButton("Usu\u0144 wybrane");
-			removeButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			removeButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 			removeButton.setBounds(15, 281, 199, 29);
 		}
 		return removeButton;
@@ -117,7 +125,7 @@ public class EventsTableFrame extends JFrame {
 		if(dateTextF == null){
 			dateTextF = new JTextField();
 			dateTextF.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			dateTextF.setBounds(332, 281, 140, 20);
+			dateTextF.setBounds(341, 300, 140, 20);
 			dateTextF.setColumns(10);
 		}
 		return dateTextF;
@@ -127,7 +135,7 @@ public class EventsTableFrame extends JFrame {
 		if(hourTextF == null){
 			hourTextF = new JTextField();
 			hourTextF.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			hourTextF.setBounds(332, 317, 140, 20);
+			hourTextF.setBounds(341, 336, 140, 20);
 			hourTextF.setColumns(10);
 		}
 		return hourTextF;
@@ -137,7 +145,7 @@ public class EventsTableFrame extends JFrame {
 		if (placeTextF == null) {
 			placeTextF = new JTextField();
 			placeTextF.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			placeTextF.setBounds(596, 285, 185, 20);
+			placeTextF.setBounds(596, 300, 185, 20);
 			placeTextF.setColumns(10);
 		}
 		return placeTextF;
@@ -147,7 +155,7 @@ public class EventsTableFrame extends JFrame {
 		if (descTextF == null) {
 			descTextF = new JTextField();
 			descTextF.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			descTextF.setBounds(596, 316, 185, 22);
+			descTextF.setBounds(596, 335, 185, 22);
 			descTextF.setColumns(10);
 		}
 		return descTextF;
@@ -157,7 +165,7 @@ public class EventsTableFrame extends JFrame {
 		if (filterButton == null) {
 			filterButton = new JButton("Filtruj");
 			filterButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			filterButton.setBounds(848, 281, 127, 29);
+			filterButton.setBounds(848, 296, 127, 29);
 		}
 		return filterButton;
 	}
@@ -166,7 +174,7 @@ public class EventsTableFrame extends JFrame {
 		if (delFilterButton == null) {
 			delFilterButton = new JButton("Usu\u0144 filtry");
 			delFilterButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			delFilterButton.setBounds(848, 313, 127, 29);
+			delFilterButton.setBounds(848, 332, 127, 29);
 		}
 		return delFilterButton;
 	}
@@ -178,5 +186,14 @@ public class EventsTableFrame extends JFrame {
 			exportToXML.setBounds(15, 314, 199, 29);
 		}
 		return exportToXML;
+	}
+	
+	public JButton getExportToICal() {
+		if(exportToICal == null){
+			exportToICal = new JButton("Eksportuj wybrane iCal");
+			exportToICal.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			exportToICal.setBounds(15, 348, 199, 29);
+		}
+		return exportToICal;
 	}
 }

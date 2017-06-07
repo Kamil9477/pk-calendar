@@ -51,7 +51,13 @@ public class EventTableController {
 		
 		evTabFrame.getExportToXML().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				exportToXML();
+				export("XML");
+			}
+		});
+		
+		evTabFrame.getExportToICal().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				export("iCal");
 			}
 		});
 	}
@@ -128,10 +134,10 @@ public class EventTableController {
 	}
 	
 	/**
-	 * metoda tworzy liste dat i godzin zaznaczonych wydarzen
-	 * i przekazuje to EventManagera
+	 * metoda tworzy liste dat i godzin zaznaczonych wydarzen do exportu
+	 * i przekazuje to do EventManagera
 	 */
-	public void exportToXML() {
+	public void export(String destination) {
 		int[] selected = evTabFrame.getTable().getSelectedRows();
 		if (selected.length > 0) {
 			JFileChooser fc = new JFileChooser();
@@ -146,7 +152,8 @@ public class EventTableController {
 					dates.add((String) evTabModel.getValueAt(selected[i], 0));
 					hours.add((String) evTabModel.getValueAt(selected[i], 1));
 				}
-				eventMan.exportToXML(dates, hours, selectedFile); 
+				
+				eventMan.export(dates, hours, selectedFile, destination); 
 			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Nie zaznaczono ¿adnego wydarzenia!", "B³¹d", JOptionPane.ERROR_MESSAGE);

@@ -97,6 +97,15 @@ public class Event implements Comparable<Event>{
 	}
 	
 	/**
+	 * zwraca minuty wydarzenia 
+	 * @return minuty
+	 */
+	public int getMin() {
+		String[] tab = hour.split(":");
+		return Integer.parseInt(tab[1]);
+	}
+	
+	/**
 	 * metoda potrzebna do sortowania po dacie
 	 * musia³em samemu zaimplementowaæ 
 	 * bo compareTo nie wspiera typów prymitywnych

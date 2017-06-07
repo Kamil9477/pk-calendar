@@ -35,9 +35,8 @@ public class XMLManager {
 		try {
 			fis = new FileInputStream(file);
 			events = (List<Event>) (xstream.fromXML(fis));
-		} catch(FileNotFoundException e) {
-			e.printStackTrace();
-		} catch(IOException e) {
+		} catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "B³¹d importu z XML", "B³¹d", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		} finally {
 			 try {
@@ -72,11 +71,8 @@ public class XMLManager {
 		    byte[] bytes = xml.getBytes("UTF-8");
 			fos.write(bytes);
 			JOptionPane.showMessageDialog(null, "Wydarzenia wyeksportowano do pliku " + file.getAbsolutePath());   
-		} catch(FileNotFoundException e) {
-			e.printStackTrace();
-		} catch(UnsupportedEncodingException e) {
-			e.printStackTrace();
-		} catch(IOException e) {
+		} catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "B³¹d eksportu do XML", "B³¹d", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		} finally {
 			try {

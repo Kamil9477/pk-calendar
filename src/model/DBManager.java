@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 /**
  * klasa odpowiedzialna za komunikacjê z baz¹ danych
  * przy ka¿dym odczycie/zapisie tworzymy nowe po³¹czenie i je zamykamy
@@ -41,7 +43,7 @@ public class DBManager {
 				stm.close();
 				con.close();
 			} catch(SQLException e) {
-				System.out.println("B³¹d zamkniêcia po³¹czenia z baz¹ danych" + e.getMessage());
+				e.printStackTrace();
 			}
         }
 		return events;
@@ -65,16 +67,15 @@ public class DBManager {
         	con = connectToDB();
             stm = con.createStatement();
             stm.executeUpdate(query);
-            System.out.println("Polecenie wykonane");
         } catch(Exception e) {
-            System.out.println("Polecenie nie wykonane " + e.getMessage());
+        	JOptionPane.showMessageDialog(null, "B³¹d przy dodawaniu wydarzenia do bazy danych ");  
             e.printStackTrace();
         } finally {
         	try {
 				stm.close();
 				con.close();
 			} catch(SQLException e) {
-				System.out.println("B³¹d zamkniêcia po³¹czenia z baz¹ danych" + e.getMessage());
+				e.printStackTrace();
 			}
         }
 		
@@ -110,14 +111,14 @@ public class DBManager {
             stm.executeUpdate(query);
             System.out.println("Polecenie wykonane");
         } catch(Exception e) {
-            System.out.println("Polecenie nie wykonane " + e.getMessage());
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "B³¹d przy usuwaniu wydarzenia z bazy danych");
         } finally {
         	try {
 				stm.close();
 				con.close();
 			} catch(SQLException e) {
-				System.out.println("B³¹d zamkniêcia po³¹czenia z baz¹ danych" + e.getMessage());
+				e.printStackTrace();
 			}
         }
 	}
@@ -158,13 +159,14 @@ public class DBManager {
 			}
             
         } catch(Exception e) {
-            e.printStackTrace();
+        	JOptionPane.showMessageDialog(null, "B³¹d przy filtrowaniu wydarzeñ");
+        	e.printStackTrace();
         } finally {
         	try {
 				stm.close();
 				con.close();
 			} catch(SQLException e) {
-				System.out.println("B³¹d zamkniêcia po³¹czenia z baz¹ danych" + e.getMessage());
+				e.printStackTrace();
 			}
         }
 		
