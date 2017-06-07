@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Calendar;
+
 /**
  * Klasa odpowiedzialna za przechowywanie obecnego miesi¹ca i roku,
  * z niej generuje siê g³ówny widok kalendarza
@@ -10,10 +12,12 @@ public class DateModel {
 	private int year;
 	private int monthDays;
 	
+	/**
+	 * ustawia miesi¹c i rok na bie¿¹cy
+	 */
 	public DateModel() {
-		//TODO poprawiæ
-		month = 6;
-		year = 2017;
+		month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+		year = Calendar.getInstance().get(Calendar.YEAR);
 		calculateMonthDays();
 	}
 	

@@ -18,7 +18,10 @@ import javax.swing.Box;
  *
  */
 public class ProgramInfo extends JDialog {
-
+	
+	/**
+	 * ustawia wygl¹d okna
+	 */
 	public ProgramInfo() {
 		setResizable(false);
 		setBounds(100, 100, 440, 219);

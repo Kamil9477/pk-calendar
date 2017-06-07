@@ -14,6 +14,10 @@ public class EventTableModel extends AbstractTableModel {
 	private Object[][] data;
 	private DBManager dbMan;
 	
+	/**
+	 * ustawia nazwy kolumn w tabeli, wczytuje to tabeli wydarzenia z bazy danych
+	 * @param dbMan obiekt do komunikowania siê z baz¹ danych
+	 */
 	public EventTableModel(DBManager dbMan) {
 		columnNames = new String[]{"DATA", "GODZINA", "MIEJSCE", "OPIS"};
 		this.dbMan = dbMan;

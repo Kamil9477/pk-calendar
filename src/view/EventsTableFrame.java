@@ -37,7 +37,11 @@ public class EventsTableFrame extends JFrame {
 	private JButton delFilterButton;
 	private JButton exportToXML;
 	private JButton exportToICal;
-
+	
+	/**
+	 * ustawia wygl¹d okna 
+	 * @param evTableModel model tabeli do wyœwietlenia
+	 */
 	public EventsTableFrame(EventTableModel evTableModel) {
 		this.evTableModel = evTableModel;
 		

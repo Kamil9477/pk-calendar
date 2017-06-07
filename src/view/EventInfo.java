@@ -18,6 +18,13 @@ import java.awt.Font;
  *
  */
 public class EventInfo extends JDialog {
+	/**
+	 * ustawia wygl¹d okna
+	 * @param data komunikat do wyœwietlenia
+	 * @param day dzieñ dla którego wyœwietlamy wydarzenia
+	 * @param month miesi¹c
+	 * @param year rok
+	 */
 	public EventInfo(String data, int day, int month, int year) {
 		setResizable(false);
 		setBounds(100, 100, 440, 300);

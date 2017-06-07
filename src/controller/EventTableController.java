@@ -24,6 +24,14 @@ public class EventTableController {
 	EventsTableFrame evTabFrame;
 	CalendarFrame calFrame;
 	
+	/**
+	 * Przypisanie obiektów podanych w parametrze, ustawienie listenerów dla komponentów okna wyœwietlaj¹cego 
+	 * tabelê z wszystkimi wydarzeniami (EventTabFrame)
+	 * @param eventMan obiekt zarz¹dzaj¹cy wydarzeniami
+	 * @param evTabModel obiekt przechowuj¹cy model tabeli
+	 * @param evTabFrame okno wyœwietlaj¹ce tabele wydarzeñ
+	 * @param calFrame g³ówne okno kalendarza
+	 */
 	public EventTableController(EventManager eventMan, EventTableModel evTabModel, 
 			EventsTableFrame evTabFrame, CalendarFrame calFrame) {
 		this.eventMan = eventMan;

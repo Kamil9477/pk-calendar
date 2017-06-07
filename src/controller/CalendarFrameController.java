@@ -35,6 +35,11 @@ public class CalendarFrameController {
 	private EventTableModel eventTableModel;
 	private EventTableController evTabController;
 	
+	/**
+	 * Inicjalizuje obiekty klas: DateModel, EventManager, CalendarFrame, EventTableModel, NewEventFrame, 
+	 * NewEventController, EventsTableFrame i EventTableController. W³¹cza widocznoœæ g³ównego okna aplikacji(CalendarFrame), 
+	 * i ustawia listenery dla komponentów znajduj¹cych siê w tym oknie.
+	 */
 	public CalendarFrameController() {
 		//g³ówne okno
 		dateModel = new DateModel();

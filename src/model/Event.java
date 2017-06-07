@@ -26,6 +26,13 @@ public class Event implements Comparable<Event>{
 	 */
 	private String description;
 	
+	/**
+	 * inicjalizuje pola klasy
+	 * @param date data wydarzenia
+	 * @param hour godzina wydarzenia
+	 * @param place miejsc wydarzenia
+	 * @param description opis wydarzenia
+	 */
 	public Event(String date, String hour, String place, String description) {
 		this.date = date;
 		this.hour = hour;

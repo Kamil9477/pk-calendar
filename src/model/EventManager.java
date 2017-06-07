@@ -16,6 +16,10 @@ public class EventManager {
 	private XMLManager xmlManager;
 	private ICalManager iCalManager;
 	
+	/**
+	 * Inicjalizuje obiekty klas: DBManager, XMLManager, ICalManager. 
+	 * Wczytuje do listy wydarzeñ wydarzenia z bazy danych.
+	 */
 	public EventManager() {
 		dbManager = new DBManager();
 		xmlManager = new XMLManager();

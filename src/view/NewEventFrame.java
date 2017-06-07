@@ -28,7 +28,10 @@ public class NewEventFrame extends JFrame {
 	private JLabel descLabel;
 	private JTextArea descTextA;
 	private JButton addButton;
-
+	
+	/**
+	 * ustawia wygl¹d okna
+	 */
 	public NewEventFrame() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

@@ -24,6 +24,14 @@ public class NewEventController {
 	private CalendarFrame calFrame;
 	private EventTableModel evTabModel;
 	
+	/**
+	 * Przypisanie obiektów podanych w parametrze, ustawienie listenerów dla komponentów
+	 * okna w którym tworzy siê nowe wydarzenie
+	 * @param newEventFrame okno w którym tworzy siê nowe wydarzenie
+	 * @param eventMan obiekt zarz¹dzaj¹cy wydarzeniami
+	 * @param calFrame g³ówne okno kalendarza
+	 * @param evTabModel obiekt przechowuj¹cy model tabeli
+	 */
 	public NewEventController(NewEventFrame newEventFrame, EventManager eventMan, 
 			CalendarFrame calFrame, EventTableModel evTabModel) {
 		this.newEventFrame = newEventFrame;

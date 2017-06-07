@@ -38,7 +38,12 @@ public class CalendarFrame extends JFrame {
 	private JMenuItem exitMenuItem;
 	private JMenuItem addEventMenuItem;
 	private JMenuItem showEventsMenuItem;
-
+	
+	/**
+	 * ustawienie wygl¹du okna 
+	 * @param dateModel obiekt odpowiadajacy za miesi¹c i rok wyœwietlany na planszy kalendarza
+	 * @param eventManager obiekt zarz¹dzaj¹cy wydarzeniami
+	 */
 	public CalendarFrame(DateModel dateModel, EventManager eventManager) {
 		this.dateModel = dateModel;
 		this.eventManager = eventManager;
@@ -125,6 +130,10 @@ public class CalendarFrame extends JFrame {
 		}
 	}
 	
+	/**
+	 * ustawia wygl¹d i zwraca przycisk prYear
+	 * @return prYear przycisk do zmniejszenia obecnego roku
+	 */
 	public JButton getPrYear() {
 		if(prYear == null) {
 			prYear = new JButton("<<");
@@ -134,6 +143,10 @@ public class CalendarFrame extends JFrame {
 		return prYear;
 	}
 	
+	/**
+	 * ustawia wygl¹d i zwraca przycisk prMonth
+	 * @return prMonth przycisk do zmniejszenia obecnego miesi¹ca
+	 */
 	public JButton getPrMonth() {
 		if(prMonth == null) {
 			prMonth = new JButton("<");
@@ -143,6 +156,10 @@ public class CalendarFrame extends JFrame {
 		return prMonth;
 	}
 	
+	/**
+	 * ustawia wygl¹d i zwraca przycisk nextYear
+	 * @return nextYear przycisk do zwiêkszenia obecnego roku
+	 */
 	public JButton getNextYear() {
 		if(nextYear == null) {
 			nextYear = new JButton(">>");
@@ -152,6 +169,10 @@ public class CalendarFrame extends JFrame {
 		return nextYear;
 	}
 	
+	/**
+	 * ustawia wygl¹d i zwraca przycisk nextMonth
+	 * @return nextMonth przycisk do zwiêkszenia obecnego miesi¹ca
+	 */
 	public JButton getNextMonth() {
 		if(nextMonth == null) {
 			nextMonth = new JButton(">");
@@ -161,6 +182,10 @@ public class CalendarFrame extends JFrame {
 		return nextMonth;
 	}
 	
+	/**
+	 * ustawia wygl¹d i zwraca etykiety wyœwietlaj¹ce nazwy dni tygodnia
+	 * @return dayNames etykiety z dniami tygodnia
+	 */
 	private JLabel[] getDayNames() {
 		if(dayNames == null) {
 			dayNames = new JLabel[7];
@@ -176,6 +201,10 @@ public class CalendarFrame extends JFrame {
 		return dayNames;
 	}
 	
+	/**
+	 * ustawia wygl¹d i zwraca tablicê przycisków reprezentuj¹cych pojedyñczy dzieñ w misi¹cu
+	 * @return days tablica przycisków reprezentuj¹cych pojedyñczy dzieñ w miesi¹cu
+	 */
 	public JButton[] getDays() {
 		if(days == null) {
 			days = new JButton[42];
@@ -188,6 +217,10 @@ public class CalendarFrame extends JFrame {
 		return days;
 	}
 	
+	/**
+	 * ustawia wygl¹d i zwraca etykietê wyœwietlaj¹c¹ obecny miesi¹c
+	 * @return monthLabel etykieta wyœwietlaj¹ca obecny miesi¹c
+	 */
 	private JLabel getMonthLabel() {
 		if(monthLabel == null) {
 			monthLabel = new JLabel(Integer.toString(dateModel.getMonth()));
@@ -198,6 +231,10 @@ public class CalendarFrame extends JFrame {
 		return monthLabel;
 	}
 	
+	/**
+	 * ustawia wygl¹d i zwraca etykietê wyœwietlaj¹c¹ obecny rok
+	 * @return yearLabel etykieta wyœwietlaj¹ca obecny rok
+	 */
 	private JLabel getYearLabel() {
 		if (yearLabel == null) {
 			yearLabel = new JLabel(Integer.toString(dateModel.getYear()));
@@ -217,6 +254,10 @@ public class CalendarFrame extends JFrame {
 		return slashLabel;
 	}
 	
+	/**
+	 * ustawia wygl¹d i zwraca przycisk addEvent
+	 * @return prYear przycisk do dodawania wydarzenia
+	 */
 	public JButton getAddEvent() {
 		if (addEvent == null) {
 			addEvent = new JButton("Dodaj wydarzenie");
@@ -226,6 +267,10 @@ public class CalendarFrame extends JFrame {
 		return addEvent;
 	}
 	
+	/**
+	 * ustawia wygl¹d i zwraca górny pasek menu
+	 * @return menuBar górny pasek menu
+	 */
 	private JMenuBar getMenuBar_1() {
 		if (menuBar == null) {
 			menuBar = new JMenuBar();
@@ -246,6 +291,10 @@ public class CalendarFrame extends JFrame {
 		return menuBar;
 	}
 	
+	/**
+	 * ustawia wygl¹d i zwraca importMenuItem
+	 * @return importMenuItem element menu, po klikniêciu nastêpuje import z XML
+	 */
 	public JMenuItem getImportMenuItem() {
 		if(importMenuItem == null) {
 			importMenuItem = new JMenuItem("Importuj z XML");
@@ -253,6 +302,10 @@ public class CalendarFrame extends JFrame {
 		return importMenuItem;
 	}
 	
+	/**
+	 * ustawia wygl¹d i zwraca descMenuItem
+	 * @return descMenuItem element menu, po klikniêciu nastêpuje wyœwietlenie okna "O programie"
+	 */
 	public JMenuItem getDescMenuItem() {
 		if(descMenuItem == null) {
 			descMenuItem = new JMenuItem("O programie");
@@ -260,6 +313,10 @@ public class CalendarFrame extends JFrame {
 		return descMenuItem;
 	}
 	
+	/**
+	 * ustawia wygl¹d i zwraca exitMenuItem
+	 * @return exitMenuItem element menu, po klikniêciu program koñczy pracê
+	 */
 	public JMenuItem getExitMenuItem() {
 		if(exitMenuItem == null) {
 			exitMenuItem = new JMenuItem("Wyjd\u017A");
@@ -267,6 +324,10 @@ public class CalendarFrame extends JFrame {
 		return exitMenuItem;
 	}
 	
+	/**
+	 * ustawia wygl¹d i zwraca addEventMenuItem
+	 * @return addEventMenuItem element menu, po klikniêciu pojawia siê okno dodawania nowego wydarzenia
+	 */
 	public JMenuItem getAddEventMenuItem() {
 		if(addEventMenuItem == null) {
 			addEventMenuItem = new JMenuItem("Dodaj wydarzenie");
@@ -274,6 +335,10 @@ public class CalendarFrame extends JFrame {
 		return addEventMenuItem;
 	}
 	
+	/**
+	 * ustawia wygl¹d i zwraca showEventsMenuItem
+	 * @return showEventsMenuItem element menu, po klikniêciu pojawia siê okno z tabel¹ z wszystkimi wydarzeniami
+	 */
 	public JMenuItem getShowEventsMenuItem() {
 		if(showEventsMenuItem == null) {
 			showEventsMenuItem = new JMenuItem("Przegl\u0105daj wydarzenia");
