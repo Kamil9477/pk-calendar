@@ -9,6 +9,8 @@ import javax.swing.border.LineBorder;
 import model.DateModel;
 import model.EventManager;
 import model.Event;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * G³owne okno kalendarza
@@ -30,8 +32,12 @@ public class CalendarFrame extends JFrame {
 	private JLabel yearLabel;
 	private JLabel slashLabel;
 	private JButton addEvent;
-	private JButton showEvents;
-	private JButton loadFromXML;
+	private JMenuBar menuBar;
+	private JMenuItem importMenuItem;
+	private JMenuItem descMenuItem;
+	private JMenuItem exitMenuItem;
+	private JMenuItem addEventMenuItem;
+	private JMenuItem showEventsMenuItem;
 
 	public CalendarFrame(DateModel dateModel, EventManager eventManager) {
 		this.dateModel = dateModel;
@@ -39,7 +45,8 @@ public class CalendarFrame extends JFrame {
 		setTitle("Kalendarz");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 652, 600);
+		setBounds(100, 100, 652, 619);
+		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -55,8 +62,6 @@ public class CalendarFrame extends JFrame {
 		contentPane.add(getMonthLabel());
 		//dolne przyciski
 		contentPane.add(getAddEvent());
-		contentPane.add(getShowEvents());
-		contentPane.add(getLoadFromXML());
 		
 		//kontener na dni miesi¹ca
 		JPanel panel = new JPanel();
@@ -120,27 +125,6 @@ public class CalendarFrame extends JFrame {
 		}
 	}
 	
-//metody ustawiaj¹ce wygl¹d komponentów
-//---------------------------------------------------------------------------------
-
-	public JButton getLoadFromXML() {
-		if (loadFromXML == null) {
-			loadFromXML = new JButton("Wczytaj z XML");
-			loadFromXML.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			loadFromXML.setBounds(241, 499, 165, 45);
-		}
-		return loadFromXML;
-	}
-	
-	public JButton getShowEvents() {
-		if (showEvents == null) {
-			showEvents = new JButton("Przegl\u0105daj wyd.");
-			showEvents.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			showEvents.setBounds(15, 499, 171, 45);
-		}
-		return showEvents;
-	}
-	
 	public JButton getPrYear() {
 		if(prYear == null) {
 			prYear = new JButton("<<");
@@ -154,7 +138,7 @@ public class CalendarFrame extends JFrame {
 		if(prMonth == null) {
 			prMonth = new JButton("<");
 			prMonth.setFont(new Font("Tahoma", Font.PLAIN, 24));
-			prMonth.setBounds(127, 16, 83, 58);
+			prMonth.setBounds(113, 16, 83, 58);
 		}
 		return prMonth;
 	}
@@ -163,7 +147,7 @@ public class CalendarFrame extends JFrame {
 		if(nextYear == null) {
 			nextYear = new JButton(">>");
 			nextYear.setFont(new Font("Tahoma", Font.PLAIN, 24));
-			nextYear.setBounds(546, 16, 83, 58);
+			nextYear.setBounds(548, 16, 83, 58);
 		}
 		return nextYear;
 	}
@@ -172,7 +156,7 @@ public class CalendarFrame extends JFrame {
 		if(nextMonth == null) {
 			nextMonth = new JButton(">");
 			nextMonth.setFont(new Font("Tahoma", Font.PLAIN, 24));
-			nextMonth.setBounds(436, 16, 83, 58);
+			nextMonth.setBounds(450, 16, 83, 58);
 		}
 		return nextMonth;
 	}
@@ -207,7 +191,7 @@ public class CalendarFrame extends JFrame {
 	private JLabel getMonthLabel() {
 		if(monthLabel == null) {
 			monthLabel = new JLabel(Integer.toString(dateModel.getMonth()));
-			monthLabel.setBounds(241, 16, 58, 58);
+			monthLabel.setBounds(241, 15, 58, 58);
 			monthLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			monthLabel.setFont(new Font("Tahoma", Font.BOLD, 28));
 		}
@@ -219,7 +203,7 @@ public class CalendarFrame extends JFrame {
 			yearLabel = new JLabel(Integer.toString(dateModel.getYear()));
 			yearLabel.setFont(new Font("Tahoma", Font.BOLD, 28));
 			yearLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			yearLabel.setBounds(298, 16, 108, 58);
+			yearLabel.setBounds(313, 15, 108, 58);
 		}
 		return yearLabel;
 	}
@@ -228,7 +212,7 @@ public class CalendarFrame extends JFrame {
 			slashLabel = new JLabel("/");
 			slashLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			slashLabel.setFont(new Font("Tahoma", Font.BOLD, 26));
-			slashLabel.setBounds(291, 16, 20, 58);
+			slashLabel.setBounds(296, 16, 20, 58);
 		}
 		return slashLabel;
 	}
@@ -237,8 +221,63 @@ public class CalendarFrame extends JFrame {
 		if (addEvent == null) {
 			addEvent = new JButton("Dodaj wydarzenie");
 			addEvent.setFont(new Font("Tahoma", Font.PLAIN, 18));
-			addEvent.setBounds(458, 499, 171, 45);
+			addEvent.setBounds(241, 499, 171, 45);
 		}
 		return addEvent;
+	}
+	
+	private JMenuBar getMenuBar_1() {
+		if (menuBar == null) {
+			menuBar = new JMenuBar();
+			
+			JMenu programMenu = new JMenu("Program");
+			menuBar.add(programMenu);
+			
+			programMenu.add(getImportMenuItem());
+			programMenu.add(getDescMenuItem());
+			programMenu.add(getExitMenuItem());
+			
+			JMenu eventsMenu = new JMenu("Wydarzenia");
+			menuBar.add(eventsMenu);
+		
+			eventsMenu.add(getAddEventMenuItem());
+			eventsMenu.add(getShowEventsMenuItem());
+		}
+		return menuBar;
+	}
+	
+	public JMenuItem getImportMenuItem() {
+		if(importMenuItem == null) {
+			importMenuItem = new JMenuItem("Importuj z XML");
+		}
+		return importMenuItem;
+	}
+	
+	public JMenuItem getDescMenuItem() {
+		if(descMenuItem == null) {
+			descMenuItem = new JMenuItem("O programie");
+		}
+		return descMenuItem;
+	}
+	
+	public JMenuItem getExitMenuItem() {
+		if(exitMenuItem == null) {
+			exitMenuItem = new JMenuItem("Wyjd\u017A");
+		}
+		return exitMenuItem;
+	}
+	
+	public JMenuItem getAddEventMenuItem() {
+		if(addEventMenuItem == null) {
+			addEventMenuItem = new JMenuItem("Dodaj wydarzenie");
+		}
+		return addEventMenuItem;
+	}
+	
+	public JMenuItem getShowEventsMenuItem() {
+		if(showEventsMenuItem == null) {
+			showEventsMenuItem = new JMenuItem("Przegl\u0105daj wydarzenia");
+		}
+		return showEventsMenuItem;
 	}
 }

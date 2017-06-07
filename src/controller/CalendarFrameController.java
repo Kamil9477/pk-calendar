@@ -13,6 +13,7 @@ import view.CalendarFrame;
 import view.EventInfo;
 import view.EventsTableFrame;
 import view.NewEventFrame;
+import view.ProgramInfo;
 import model.DateModel;
 import model.Event;
 import model.EventManager;
@@ -74,7 +75,14 @@ public class CalendarFrameController {
 			}
 		});
 		
+		//listenery dla nowego wydarzenia
 		calFrame.getAddEvent().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				newEventFrame.setVisible(true);
+			}
+		});
+		
+		calFrame.getAddEventMenuItem().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				newEventFrame.setVisible(true);
 			}
@@ -91,17 +99,31 @@ public class CalendarFrameController {
 			});
 		}
 		
-		//listener dla guzika "Przeglπdaj wyd."
-		calFrame.getShowEvents().addActionListener(new ActionListener() {
+		//listener dla "Przeglπdaj wydarzenia"
+		calFrame.getShowEventsMenuItem().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				eventsTableFrame.setVisible(true);
 			}
 		});
 		
 		//listener dla "Wczytaj z XML"
-		calFrame.getLoadFromXML().addActionListener(new ActionListener() {
+		calFrame.getImportMenuItem().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loadFromXML();
+			}
+		});
+		
+		//listener dla "O programie"
+		calFrame.getDescMenuItem().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ProgramInfo().setVisible(true);
+			}
+		});
+		
+		//listener dla "Wyjdü"
+		calFrame.getExitMenuItem().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
 			}
 		});
 	}
