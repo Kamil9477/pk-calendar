@@ -13,6 +13,10 @@ import javax.swing.SwingConstants;
 import java.awt.Component;
 import javax.swing.Box;
 
+/**
+ * Okienko wyœwietlaj¹ce informacje "O programie"
+ *
+ */
 public class ProgramInfo extends JDialog {
 
 	public ProgramInfo() {

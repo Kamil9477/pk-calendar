@@ -2,9 +2,11 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import view.CalendarFrame;
@@ -132,14 +134,20 @@ public class EventTableController {
 	public void exportToXML() {
 		int[] selected = evTabFrame.getTable().getSelectedRows();
 		if (selected.length > 0) {
-			String path = JOptionPane.showInputDialog("Podaj œcie¿kê pliku do eksportu: ");
-			List<String> dates = new ArrayList<String>();
-			List<String> hours = new ArrayList<String>();
-			for (int i = 0; i < selected.length; i++) {
-				dates.add((String) evTabModel.getValueAt(selected[i], 0));
-				hours.add((String) evTabModel.getValueAt(selected[i], 1));
+			JFileChooser fc = new JFileChooser();
+			fc.setCurrentDirectory(new File(System.getProperty("user.dir")));
+			int result = fc.showSaveDialog(evTabFrame);
+			if (result == JFileChooser.APPROVE_OPTION) {
+			    File selectedFile = fc.getSelectedFile();
+			    
+			    List<String> dates = new ArrayList<String>();
+				List<String> hours = new ArrayList<String>();
+				for (int i = 0; i < selected.length; i++) {
+					dates.add((String) evTabModel.getValueAt(selected[i], 0));
+					hours.add((String) evTabModel.getValueAt(selected[i], 1));
+				}
+				eventMan.exportToXML(dates, hours, selectedFile); 
 			}
-			eventMan.exportToXML(dates, hours, path);
 		} else {
 			JOptionPane.showMessageDialog(null, "Nie zaznaczono ¿adnego wydarzenia!", "B³¹d", JOptionPane.ERROR_MESSAGE);
 		}

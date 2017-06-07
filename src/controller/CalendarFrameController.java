@@ -2,11 +2,13 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import view.CalendarFrame;
@@ -187,14 +189,20 @@ public class CalendarFrameController {
 	
 	/**
 	 * metoda uruchamiana naciœniêciem przycisku "Wczytaj z XML"
-	 * pobiera od u¿ytkownika œcie¿kê pliku i wywo³uje metodê z Event Managera
+	 * pobiera od u¿ytkownika plik i wywo³uje metodê z Event Managera
 	 * odœwie¿a widok
 	 */
 	public void loadFromXML() {
-		String path = JOptionPane.showInputDialog("Podaj œcie¿kê pliku do wczytania: ");
-		eventManager.loadFromXML(path);
-		calFrame.updateView();
-		eventTableModel.setDataFromDB();
-		eventTableModel.fireTableDataChanged();
+		JFileChooser fc = new JFileChooser();
+		fc.setCurrentDirectory(new File(System.getProperty("user.dir")));
+		int result = fc.showOpenDialog(calFrame);
+		if (result == JFileChooser.APPROVE_OPTION) {
+		    File selectedFile = fc.getSelectedFile();
+		  
+		    eventManager.loadFromXML(selectedFile);
+			calFrame.updateView();
+			eventTableModel.setDataFromDB();
+			eventTableModel.fireTableDataChanged();
+		}
 	}
 }

@@ -1,6 +1,7 @@
 package model;
 
 import java.io.EOFException;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -24,7 +25,7 @@ public class XMLManager {
 	 * @param path sciezka
 	 * @return lista wydarzen
 	 */
-	public List<Event> loadFromXML(String path) {
+	public List<Event> loadFromXML(File file) {
 		List<Event> events = new ArrayList<Event>();
 		XStream xstream = new XStream();
 		xstream.alias("Events", List.class);
@@ -32,7 +33,7 @@ public class XMLManager {
 		FileInputStream fis = null;
 		
 		try {
-			fis = new FileInputStream(path);
+			fis = new FileInputStream(file);
 			events = (List<Event>) (xstream.fromXML(fis));
 		} catch(FileNotFoundException e) {
 			e.printStackTrace();
@@ -55,7 +56,7 @@ public class XMLManager {
 	 * @param events lista wydarzen
 	 * @param path sciezka
 	 */
-	public void exportToXML(List<Event> events, String path) {
+	public void exportToXML(List<Event> events, File file) {
 		XStream xstream = new XStream();
 		
 		xstream.alias("Events", List.class);
@@ -65,12 +66,12 @@ public class XMLManager {
 		String xml;	
 	    
 	    try {
-			fos = new FileOutputStream(path + ".xml");
+			fos = new FileOutputStream(file);
 			fos.write("<?xml version=\"1.0\"?>".getBytes("UTF-8"));
 		    xml = xstream.toXML(events);
 		    byte[] bytes = xml.getBytes("UTF-8");
 			fos.write(bytes);
-			JOptionPane.showMessageDialog(null, "Wydarzenia wyeksportowano do pliku " + path + ".xml");   
+			JOptionPane.showMessageDialog(null, "Wydarzenia wyeksportowano do pliku " + file.getAbsolutePath());   
 		} catch(FileNotFoundException e) {
 			e.printStackTrace();
 		} catch(UnsupportedEncodingException e) {

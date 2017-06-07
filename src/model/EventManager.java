@@ -1,5 +1,6 @@
 package model;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -95,9 +96,9 @@ public class EventManager {
 	 * metoda tworzy liste wydarzeñ do exportu i przekazuje je do XMLManagera
 	 * @param dates 
 	 * @param hours
-	 * @param path
+	 * @param file 
 	 */
-	public void exportToXML(List<String> dates, List<String> hours, String path) {
+	public void exportToXML(List<String> dates, List<String> hours, File file) {
 		List<Event> eventsToExport = new ArrayList<Event>();
 		for(Event item : eventList) {
 			for(int i=0; i<dates.size(); i++) {
@@ -106,7 +107,7 @@ public class EventManager {
 				}
 			}
 		}
-		xmlManager.exportToXML(eventsToExport, path);
+		xmlManager.exportToXML(eventsToExport, file);
 	}
 	
 	/**
@@ -114,8 +115,8 @@ public class EventManager {
 	 * z pliku pod œcie¿k¹ podan¹ w parametrze
 	 * @param path
 	 */
-	public void loadFromXML(String path) {
-		List<Event> events = xmlManager.loadFromXML(path);
+	public void loadFromXML(File file) {
+		List<Event> events = xmlManager.loadFromXML(file);
 		eventList.addAll(events);
 		for(Event item : events) {
 			dbManager.addEventToDB(item);
