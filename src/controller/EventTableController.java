@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import view.CalendarFrame;
 import view.EventsTableFrame;
@@ -151,6 +152,9 @@ public class EventTableController {
 		if (selected.length > 0) {
 			JFileChooser fc = new JFileChooser();
 			fc.setCurrentDirectory(new File(System.getProperty("user.dir")));
+			fc.addChoosableFileFilter(new FileNameExtensionFilter("Plik XML", "xml"));
+			fc.addChoosableFileFilter(new FileNameExtensionFilter("Plik iCal", "ics"));
+			fc.setAcceptAllFileFilterUsed(false);
 			int result = fc.showSaveDialog(evTabFrame);
 			if (result == JFileChooser.APPROVE_OPTION) {
 			    File selectedFile = fc.getSelectedFile();

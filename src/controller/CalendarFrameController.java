@@ -10,6 +10,7 @@ import java.util.Optional;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import view.CalendarFrame;
 import view.EventInfo;
@@ -201,10 +202,12 @@ public class CalendarFrameController {
 	public void loadFromXML() {
 		JFileChooser fc = new JFileChooser();
 		fc.setCurrentDirectory(new File(System.getProperty("user.dir")));
+		fc.addChoosableFileFilter(new FileNameExtensionFilter("Plik XML", "xml"));
+		fc.setAcceptAllFileFilterUsed(false);
 		int result = fc.showOpenDialog(calFrame);
 		if (result == JFileChooser.APPROVE_OPTION) {
 		    File selectedFile = fc.getSelectedFile();
-		  
+		    
 		    eventManager.loadFromXML(selectedFile);
 			calFrame.updateView();
 			eventTableModel.setDataFromDB();

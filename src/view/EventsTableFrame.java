@@ -46,11 +46,12 @@ public class EventsTableFrame extends JFrame {
 		this.evTableModel = evTableModel;
 		
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 1000, 449);
+		setBounds(100, 100, 1000, 422);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setResizable(false);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(15, 16, 960, 249);
